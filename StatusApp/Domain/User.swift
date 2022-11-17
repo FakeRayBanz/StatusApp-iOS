@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct User {
-    var AccountId: Int;
-    var FirstName: String;
-    var LastName: String;
-    var Email: String;
-    var Password: String;
-    var Username: String;
-    var PhoneNumber: String;
-    var Status: String;
-    var Online: Bool;
+struct User: Codable {
+    var accountId: Int?;
+    var firstName: String?;
+    var lastName: String?;
+    var email: String?;
+    var password: String?;
+    var userName: String?;
+    var phoneNumber: String?;
+    var status: String?;
+    var online: Bool?;
 }
