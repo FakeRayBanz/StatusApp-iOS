@@ -11,15 +11,15 @@ struct ProfileView: View {
     @EnvironmentObject var dataState: DataState
     var body: some View {
         VStack {
-            Text(String(dataState.currentUser.accountId ?? -1))
-            Text(dataState.currentUser.firstName ?? "null")
-            Text(dataState.currentUser.lastName ?? "null")
-            Text(dataState.currentUser.email ?? "null")
-            Text(dataState.currentUser.password ?? "null")
-            Text(dataState.currentUser.userName ?? "null")
-            Text(dataState.currentUser.phoneNumber ?? "null")
-            Text(dataState.currentUser.status ?? "null")
-            Text(String(dataState.currentUser.online ?? false))
+            Text(String(dataState.currentUser.accountId))
+            Text(dataState.currentUser.firstName)
+            Text(dataState.currentUser.lastName)
+            Text(dataState.currentUser.email)
+            Text(dataState.currentUser.password)
+            Text(dataState.currentUser.userName)
+            Text(dataState.currentUser.phoneNumber)
+            Text(dataState.currentUser.status)
+            Text(String(dataState.currentUser.online))
         }
     }
 }

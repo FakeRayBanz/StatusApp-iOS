@@ -18,6 +18,9 @@
 		55A553AB29250C9C000704FB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A553AA29250C9C000704FB /* User.swift */; };
 		55A553B029250F09000704FB /* MessageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A553AF29250F09000704FB /* MessageRequest.swift */; };
 		55DDEF122927A7B900D1E211 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55DDEF112927A7B900D1E211 /* Config.plist */; };
+		55DDEF142927B2B400D1E211 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DDEF132927B2B400D1E211 /* Friend.swift */; };
+		55DDEF162927C03C00D1E211 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DDEF152927C03C00D1E211 /* ChatView.swift */; };
+		55DDEF1C2927CB4800D1E211 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DDEF1B2927CB4800D1E211 /* StatusView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +36,9 @@
 		55A553AA29250C9C000704FB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		55A553AF29250F09000704FB /* MessageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRequest.swift; sourceTree = "<group>"; };
 		55DDEF112927A7B900D1E211 /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
+		55DDEF132927B2B400D1E211 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		55DDEF152927C03C00D1E211 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		55DDEF1B2927CB4800D1E211 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,7 @@
 				55559B6C2924FDC100B58E1E /* Message.swift */,
 				55A553AA29250C9C000704FB /* User.swift */,
 				556B96DC29263B1E00530946 /* DataState.swift */,
+				55DDEF132927B2B400D1E211 /* Friend.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -107,6 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				556B96DE29265A4000530946 /* ProfileView.swift */,
+				55DDEF152927C03C00D1E211 /* ChatView.swift */,
+				55DDEF1B2927CB4800D1E211 /* StatusView.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -197,10 +206,13 @@
 			files = (
 				556B96DF29265A4000530946 /* ProfileView.swift in Sources */,
 				55A553AB29250C9C000704FB /* User.swift in Sources */,
+				55DDEF1C2927CB4800D1E211 /* StatusView.swift in Sources */,
+				55DDEF162927C03C00D1E211 /* ChatView.swift in Sources */,
 				55559B6D2924FDC100B58E1E /* Message.swift in Sources */,
 				556B96DD29263B1E00530946 /* DataState.swift in Sources */,
 				555F710F292515DA0029A9F5 /* UserRequest.swift in Sources */,
 				55559B5D2924FB9200B58E1E /* ContentView.swift in Sources */,
+				55DDEF142927B2B400D1E211 /* Friend.swift in Sources */,
 				55A553B029250F09000704FB /* MessageRequest.swift in Sources */,
 				55559B5B2924FB9200B58E1E /* StatusAppApp.swift in Sources */,
 			);
