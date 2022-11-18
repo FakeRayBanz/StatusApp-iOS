@@ -7,13 +7,26 @@
 
 import Foundation
 
-// Needing parameters extracted to variables
-func GetUser() async -> User {
+// remove url to plist
+func GetUser(AccountId: Int) async -> User {
+    let path: String = Bundle.main.path(forResource: "Config", ofType: "plist")!
+    let config: NSDictionary = NSDictionary(contentsOfFile: path)!
+    let connectionString = config.object(forKey: "connectionString") as! String
+
     var user = User()
-    guard let url = URL(string: "") else {
+    guard var urlComponents = URLComponents(string: "\(connectionString)/getuser")
+    else {
         print("Invalid URL")
         return User()
     }
+    urlComponents.queryItems = [URLQueryItem(name: "AccountId", value: String(AccountId))]
+
+    guard let url = urlComponents.url
+    else {
+        print("Invalid URL")
+        return User()
+    }
+
     do {
         let (data, _) = try await URLSession.shared.data(from: url)
         if let decodedResponse = try? JSONDecoder().decode(User.self, from: data) {

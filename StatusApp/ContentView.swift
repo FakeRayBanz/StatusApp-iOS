@@ -22,7 +22,7 @@ struct ContentView: View {
                 ProfileView()
                     .padding()
                     .task {
-                        await dataState.currentUser = GetUser()
+                        await dataState.currentUser = GetUser(AccountId: 1)
                     }
             }
         }

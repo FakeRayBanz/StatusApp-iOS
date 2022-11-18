@@ -17,6 +17,7 @@
 		556B96DF29265A4000530946 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B96DE29265A4000530946 /* ProfileView.swift */; };
 		55A553AB29250C9C000704FB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A553AA29250C9C000704FB /* User.swift */; };
 		55A553B029250F09000704FB /* MessageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A553AF29250F09000704FB /* MessageRequest.swift */; };
+		55DDEF122927A7B900D1E211 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55DDEF112927A7B900D1E211 /* Config.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		556B96DE29265A4000530946 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		55A553AA29250C9C000704FB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		55A553AF29250F09000704FB /* MessageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRequest.swift; sourceTree = "<group>"; };
+		55DDEF112927A7B900D1E211 /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +49,7 @@
 		55559B4E2924FB9200B58E1E = {
 			isa = PBXGroup;
 			children = (
+				55DDEF112927A7B900D1E211 /* Config.plist */,
 				55559B592924FB9200B58E1E /* StatusApp */,
 				55559B582924FB9200B58E1E /* Products */,
 			);
@@ -180,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55559B622924FB9300B58E1E /* Preview Assets.xcassets in Resources */,
+				55DDEF122927A7B900D1E211 /* Config.plist in Resources */,
 				55559B5F2924FB9300B58E1E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
