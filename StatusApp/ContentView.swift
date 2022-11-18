@@ -8,16 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var dataState: DataState
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
-        .onAppear() {
-            var newUser = GetUser(AccountId: 1)
+        NavigationStack {
+            VStack {
+                NavigationLink {
+                    ProfileView()
+                } label: {
+                    Text("Profile View")
+                }
+                .buttonStyle(.borderedProminent)
+
+                ProfileView()
+                    .padding()
+                    .task {
+                        await dataState.currentUser = GetUser()
+                    }
+            }
         }
     }
 }
@@ -25,5 +32,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(DataState())
     }
 }

@@ -5,20 +5,22 @@
 //  Created by Matthew Parker on 16/11/2022.
 //
 
-import Alamofire
 import Foundation
 
-func GetUser(AccountId: Int) -> User {
-    var aUser = User()
-    let url: String = ""
-    AF.request(url, method: .get).responseDecodable(of: User.self) { response in
-        switch response.result {
-        case .success(let user):
-            aUser = user;
-            print(aUser);
-        case .failure(let error):
-            print(error);
-        }
+// Needing parameters extracted to variables
+func GetUser() async -> User {
+    var user = User()
+    guard let url = URL(string: "") else {
+        print("Invalid URL")
+        return User()
     }
-    return aUser
+    do {
+        let (data, _) = try await URLSession.shared.data(from: url)
+        if let decodedResponse = try? JSONDecoder().decode(User.self, from: data) {
+            user = decodedResponse
+        }
+    } catch {
+        print("Invalid Data")
+    }
+    return user
 }

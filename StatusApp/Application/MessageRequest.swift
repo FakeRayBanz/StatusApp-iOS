@@ -8,8 +8,6 @@
 import Alamofire
 import Foundation
 
-func TestRequest() {
-    AF.request("https://httpbin.org/get").response { response in
-        debugPrint(response);
-    }
+func GetMessage() {
+    //
 }
