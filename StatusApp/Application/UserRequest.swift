@@ -7,7 +7,6 @@
 
 import Foundation
 
-// remove url to plist
 func GetUser(AccountId: Int) async -> User {
     let path: String = Bundle.main.path(forResource: "Config", ofType: "plist")!
     let config: NSDictionary = NSDictionary(contentsOfFile: path)!
