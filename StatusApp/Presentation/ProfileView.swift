@@ -14,10 +14,10 @@ struct ProfileView: View {
             Text(String(dataState.currentUser.accountId))
             Text(dataState.currentUser.firstName)
             Text(dataState.currentUser.lastName)
-            Text(dataState.currentUser.email)
-            Text(dataState.currentUser.password)
+            Text(dataState.currentAccount.email)
+            Text(dataState.currentAccount.password)
             Text(dataState.currentUser.userName)
-            Text(dataState.currentUser.phoneNumber)
+            Text(dataState.currentAccount.phoneNumber)
             Text(dataState.currentUser.status)
             Text(String(dataState.currentUser.online))
         }

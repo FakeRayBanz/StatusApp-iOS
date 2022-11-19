@@ -11,10 +11,7 @@ struct User: Codable {
     var accountId: Int = -1
     var firstName: String = ""
     var lastName: String = ""
-    var email: String = ""
-    var password: String = ""
     var userName: String = ""
-    var phoneNumber: String = ""
     var status: String = ""
     var online: Bool = false
 }

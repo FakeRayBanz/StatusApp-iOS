@@ -11,7 +11,6 @@ struct ContentView: View {
     @EnvironmentObject var dataState: DataState
     @State var showUserView: Bool = false
     @State var showStatusView: Bool = false
-    var statusRed = Color(UIColor.init(red: 0.96, green: 0, blue: 0, alpha: 1))
     var body: some View {
         NavigationStack {
             VStack {
@@ -37,43 +36,22 @@ struct ContentView: View {
                             .frame(width: 35, height: 35)
                             .padding(.trailing, 25)
                     }
-                    
                 }
                 Spacer()
-                ForEach(dataState.friends) { friend in
-                    NavigationLink {
-                        ChatView()
-                    } label: {
-                        HStack {
-                            VStack {
-                                Text("\(friend.firstName) \(friend.lastName)")
-                                    .bold()
-                                Text(friend.status)
-                                    .foregroundColor(.primary)
-                            }
-                            Image(systemName: "circle.fill")
-                                .resizable()
-                                .foregroundColor(friend.online ? .green : statusRed)
-                                .shadow(radius: 5)
-                                .scaledToFit()
-                                .frame(width: 35, height: 35)
-                        }
-                        .padding()
-                        .background(Color(.systemGray5))
-                        .cornerRadius(10)
-                    }
-                }
-                .sheet(isPresented: $showUserView) {
-                    ProfileView()
-                }
-                .sheet(isPresented: $showStatusView) {
-                    StatusView()
-                }
-                .padding()
-                .task {
-                    await dataState.currentUser = GetUser(AccountId: 1)
-                }
+                FriendsStatusView()
+                    .padding()
                 Spacer()
+            }
+            .sheet(isPresented: $showUserView) {
+                ProfileView()
+            }
+            .sheet(isPresented: $showStatusView) {
+                StatusView()
+            }
+            .task {
+                await dataState.currentUser = GetUser(AccountId: 1)
+                await dataState.currentAccount = GetAccount(AccountId: 1)
+                await dataState.friendsList = GetFriendsList(AccountId: 1)
             }
         }
     }
