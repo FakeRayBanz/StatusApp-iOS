@@ -11,6 +11,7 @@ struct ContentView: View {
     @EnvironmentObject var dataState: DataState
     @State var showUserView: Bool = false
     @State var showStatusView: Bool = false
+    @State var showAddFriendView: Bool = false
     var body: some View {
         NavigationStack {
             VStack {
@@ -38,8 +39,12 @@ struct ContentView: View {
                     }
                 }
                 Spacer()
+                Button("Add Friends") {
+                    showAddFriendView.toggle()
+                }
+                .buttonStyle(.borderedProminent)
+                .padding(5)
                 FriendsStatusView()
-                    .padding()
                 Spacer()
             }
             .sheet(isPresented: $showUserView) {
@@ -48,10 +53,15 @@ struct ContentView: View {
             .sheet(isPresented: $showStatusView) {
                 StatusView()
             }
+            .sheet(isPresented: $showAddFriendView) {
+                AddFriendView()
+            }
             .task {
-                await dataState.currentUser = GetUser(AccountId: 1)
-                await dataState.currentAccount = GetAccount(AccountId: 1)
-                await dataState.friendsList = GetFriendsList(AccountId: 1)
+                //if dataState.currentAccountId == -1, present fullscreen cover to "sign in"
+                await dataState.currentUser = GetUser(AccountId: dataState.currentAccountId)
+                await dataState.currentAccount = GetAccount(AccountId: dataState.currentAccountId)
+                await dataState.friendsList = GetFriendsList(AccountId: dataState.currentAccountId)
+                dataState.currentAccountId = dataState.currentUser.accountId
             }
         }
     }

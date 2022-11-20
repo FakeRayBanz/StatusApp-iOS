@@ -32,6 +32,7 @@ struct FriendsStatusView: View {
                 .padding()
                 .background(Color(.systemGray5))
                 .cornerRadius(10)
+                .padding(5)
             }
         }
     }
@@ -40,5 +41,6 @@ struct FriendsStatusView: View {
 struct FriendsStatusView_Previews: PreviewProvider {
     static var previews: some View {
         FriendsStatusView()
+            .environmentObject(DataState())
     }
 }

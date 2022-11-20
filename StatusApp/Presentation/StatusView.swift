@@ -13,6 +13,8 @@ struct StatusView: View {
         VStack {
             Text(dataState.currentUser.status)
             TextField("Enter data", text: $dataState.currentUser.status)
+                .textFieldStyle(.roundedBorder)
+                .padding()
         }
     }
 }

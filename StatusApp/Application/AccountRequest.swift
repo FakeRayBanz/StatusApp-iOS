@@ -11,7 +11,6 @@ func GetAccount(AccountId: Int) async -> Account {
     let path: String = Bundle.main.path(forResource: "Config", ofType: "plist")!
     let config: NSDictionary = NSDictionary(contentsOfFile: path)!
     let connectionString = config.object(forKey: "connectionString") as! String
-
     var account = Account()
     guard var urlComponents = URLComponents(string: "\(connectionString)/getaccount")
     else {

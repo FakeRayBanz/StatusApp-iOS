@@ -16,9 +16,15 @@
 		55559B5F2924FB9300B58E1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55559B5E2924FB9300B58E1E /* Assets.xcassets */; };
 		55559B622924FB9300B58E1E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55559B612924FB9300B58E1E /* Preview Assets.xcassets */; };
 		55559B6D2924FDC100B58E1E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55559B6C2924FDC100B58E1E /* Message.swift */; };
+		555B5D72292993E5006F2929 /* AddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555B5D71292993E5006F2929 /* AddFriendView.swift */; };
+		555B5D7429299600006F2929 /* AddFriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555B5D7329299600006F2929 /* AddFriendRequest.swift */; };
+		555B5D76292997AF006F2929 /* Friendship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555B5D75292997AF006F2929 /* Friendship.swift */; };
+		555B5D78292A4675006F2929 /* FriendshipsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555B5D77292A4675006F2929 /* FriendshipsRequest.swift */; };
 		555F710F292515DA0029A9F5 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F710E292515DA0029A9F5 /* UserRequest.swift */; };
 		556B96DD29263B1E00530946 /* DataState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B96DC29263B1E00530946 /* DataState.swift */; };
 		556B96DF29265A4000530946 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B96DE29265A4000530946 /* ProfileView.swift */; };
+		55900561292A631600FC65C1 /* ActionFriendRqRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55900560292A631600FC65C1 /* ActionFriendRqRequest.swift */; };
+		55900563292A69F000FC65C1 /* RemoveFriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55900562292A69F000FC65C1 /* RemoveFriendRequest.swift */; };
 		55A553AB29250C9C000704FB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A553AA29250C9C000704FB /* User.swift */; };
 		55A553B029250F09000704FB /* MessageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A553AF29250F09000704FB /* MessageRequest.swift */; };
 		55DDEF122927A7B900D1E211 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55DDEF112927A7B900D1E211 /* Config.plist */; };
@@ -37,9 +43,15 @@
 		55559B5E2924FB9300B58E1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55559B612924FB9300B58E1E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		55559B6C2924FDC100B58E1E /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		555B5D71292993E5006F2929 /* AddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendView.swift; sourceTree = "<group>"; };
+		555B5D7329299600006F2929 /* AddFriendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendRequest.swift; sourceTree = "<group>"; };
+		555B5D75292997AF006F2929 /* Friendship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friendship.swift; sourceTree = "<group>"; };
+		555B5D77292A4675006F2929 /* FriendshipsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendshipsRequest.swift; sourceTree = "<group>"; };
 		555F710E292515DA0029A9F5 /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		556B96DC29263B1E00530946 /* DataState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataState.swift; sourceTree = "<group>"; };
 		556B96DE29265A4000530946 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		55900560292A631600FC65C1 /* ActionFriendRqRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionFriendRqRequest.swift; sourceTree = "<group>"; };
+		55900562292A69F000FC65C1 /* RemoveFriendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFriendRequest.swift; sourceTree = "<group>"; };
 		55A553AA29250C9C000704FB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		55A553AF29250F09000704FB /* MessageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRequest.swift; sourceTree = "<group>"; };
 		55DDEF112927A7B900D1E211 /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
@@ -112,6 +124,7 @@
 				55A553AA29250C9C000704FB /* User.swift */,
 				55490B8A292910CD009E8363 /* Account.swift */,
 				556B96DC29263B1E00530946 /* DataState.swift */,
+				555B5D75292997AF006F2929 /* Friendship.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -123,6 +136,7 @@
 				55DDEF152927C03C00D1E211 /* ChatView.swift */,
 				55DDEF1B2927CB4800D1E211 /* StatusView.swift */,
 				55490B9029291A35009E8363 /* FriendsStatusView.swift */,
+				555B5D71292993E5006F2929 /* AddFriendView.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -134,6 +148,10 @@
 				55490B8C2929115D009E8363 /* AccountRequest.swift */,
 				555F710E292515DA0029A9F5 /* UserRequest.swift */,
 				55490B8E292913C3009E8363 /* FriendsListRequest.swift */,
+				555B5D7329299600006F2929 /* AddFriendRequest.swift */,
+				555B5D77292A4675006F2929 /* FriendshipsRequest.swift */,
+				55900560292A631600FC65C1 /* ActionFriendRqRequest.swift */,
+				55900562292A69F000FC65C1 /* RemoveFriendRequest.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -214,8 +232,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				556B96DF29265A4000530946 /* ProfileView.swift in Sources */,
+				55900561292A631600FC65C1 /* ActionFriendRqRequest.swift in Sources */,
 				55A553AB29250C9C000704FB /* User.swift in Sources */,
 				55490B8D2929115D009E8363 /* AccountRequest.swift in Sources */,
+				555B5D72292993E5006F2929 /* AddFriendView.swift in Sources */,
 				55DDEF1C2927CB4800D1E211 /* StatusView.swift in Sources */,
 				55DDEF162927C03C00D1E211 /* ChatView.swift in Sources */,
 				55559B6D2924FDC100B58E1E /* Message.swift in Sources */,
@@ -223,10 +243,14 @@
 				55490B8F292913C3009E8363 /* FriendsListRequest.swift in Sources */,
 				55490B9129291A35009E8363 /* FriendsStatusView.swift in Sources */,
 				556B96DD29263B1E00530946 /* DataState.swift in Sources */,
+				555B5D7429299600006F2929 /* AddFriendRequest.swift in Sources */,
 				555F710F292515DA0029A9F5 /* UserRequest.swift in Sources */,
+				555B5D78292A4675006F2929 /* FriendshipsRequest.swift in Sources */,
+				55900563292A69F000FC65C1 /* RemoveFriendRequest.swift in Sources */,
 				55559B5D2924FB9200B58E1E /* ContentView.swift in Sources */,
 				55A553B029250F09000704FB /* MessageRequest.swift in Sources */,
 				55559B5B2924FB9200B58E1E /* StatusAppApp.swift in Sources */,
+				555B5D76292997AF006F2929 /* Friendship.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
