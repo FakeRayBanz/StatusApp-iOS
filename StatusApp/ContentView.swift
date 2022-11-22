@@ -12,6 +12,7 @@ struct ContentView: View {
     @State var showUserView: Bool = false
     @State var showStatusView: Bool = false
     @State var showAddFriendView: Bool = false
+    var statusRed = Color(UIColor(red: 0.96, green: 0, blue: 0, alpha: 1))
     var body: some View {
         NavigationStack {
             VStack {
@@ -31,7 +32,7 @@ struct ContentView: View {
                     Button(action: { showStatusView.toggle() }) {
                         Image(systemName: "circle.fill")
                             .resizable()
-                            .foregroundColor(.green)
+                            .foregroundColor(dataState.currentUser.online ? .green : statusRed)
                             .shadow(radius: 5)
                             .scaledToFit()
                             .frame(width: 35, height: 35)
@@ -58,9 +59,9 @@ struct ContentView: View {
             }
             .task {
                 //if dataState.currentAccountId == -1, present fullscreen cover to "sign in"
-                await dataState.currentUser = GetUser(AccountId: dataState.currentAccountId)
-                await dataState.currentAccount = GetAccount(AccountId: dataState.currentAccountId)
-                await dataState.friendsList = GetFriendsList(AccountId: dataState.currentAccountId)
+                 dataState.currentUser = await GetUser(AccountId: dataState.currentAccountId)
+                 dataState.currentAccount = await GetAccount(AccountId: dataState.currentAccountId)
+                 dataState.friendsList = await GetFriendsList(AccountId: dataState.currentAccountId)
                 dataState.currentAccountId = dataState.currentUser.accountId
             }
         }

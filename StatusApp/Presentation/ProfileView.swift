@@ -12,10 +12,23 @@ struct ProfileView: View {
     @State var accountIdInput: Int = 0
     var body: some View {
         VStack {
+            Text("My Account")
+                .font(.largeTitle)
+                .padding(.top)
+                .padding(.bottom, 35)
             Text("Enter Account ID")
             TextField("Enter Account ID", value: $accountIdInput, format: .number)
-                .textFieldStyle(.roundedBorder)
-                .padding(20)
+                .frame(minWidth: 100, idealWidth: 200, maxWidth: 250)
+                .multilineTextAlignment(.center)
+                .foregroundColor(Color(.darkGray))
+                .font(.system(size: 20))
+                .padding(10)
+                .overlay(
+                    Capsule(style: .continuous)
+                        .stroke(Color(.darkGray), lineWidth: 2)
+                )
+                .padding(.top, 5)
+                .padding(.bottom, 50)
                 .onSubmit {
                     Task {
                         await dataState.currentUser = GetUser(AccountId: accountIdInput)
@@ -25,16 +38,41 @@ struct ProfileView: View {
                     }
                 }
             Group {
-                Text(String(dataState.currentUser.accountId))
-                Text(dataState.currentUser.firstName)
-                Text(dataState.currentUser.lastName)
-                Text(dataState.currentAccount.email)
-                Text(dataState.currentAccount.password)
-                Text(dataState.currentUser.userName)
-                Text(dataState.currentAccount.phoneNumber)
-                Text(dataState.currentUser.status)
-                Text(String(dataState.currentUser.online))
+                LabeledContent("Account ID") {
+                    Text(String(dataState.currentUser.accountId))
+                }.padding(.horizontal, 60)
+                LabeledContent("firstName") {
+                    Text(dataState.currentUser.firstName)
+                }.padding(.horizontal, 60)
+                LabeledContent("lastName") {
+                    Text(dataState.currentUser.lastName)
+                }.padding(.horizontal, 60)
+                LabeledContent("email") {
+                    Text(dataState.currentAccount.email)
+                }.padding(.horizontal, 60)
+                LabeledContent("password") {
+                    Text(dataState.currentAccount.password)
+                }.padding(.horizontal, 60)
             }
+            Group {
+                LabeledContent("userName") {
+                    Text(dataState.currentUser.userName)
+                }.padding(.horizontal, 60)
+                LabeledContent("phoneNumber") {
+                    Text(dataState.currentAccount.phoneNumber)
+                }.padding(.horizontal, 60)
+                LabeledContent("status") {
+                    Text(dataState.currentUser.status)
+                }.padding(.horizontal, 60)
+                LabeledContent("online") {
+                    Text(String(dataState.currentUser.online))
+                }.padding(.horizontal, 60)
+            }
+
+            Spacer()
+                .task {
+                    accountIdInput = dataState.currentAccountId
+                }
         }
     }
 }
@@ -42,5 +80,6 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
+            .environmentObject(DataState())
     }
 }

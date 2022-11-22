@@ -17,7 +17,6 @@ struct StatusView: View {
                 .font(.largeTitle)
                 .padding(.top)
                 .padding(.bottom, 35)
-            
             HStack {
                 VStack {
                     Text("\(dataState.currentUser.firstName) \(dataState.currentUser.lastName)")
@@ -38,40 +37,83 @@ struct StatusView: View {
             .cornerRadius(10)
             .padding(.bottom, 50)
             HStack {
-                Image(systemName: "circle.fill")
-                    .resizable()
-                    .foregroundColor(.green)
-                    .shadow(radius: 5)
-                    .scaledToFit()
-                    .frame(width: 50, height: 50)
-                    
-                    
-                    .padding(.trailing, 30)
-                Image(systemName: "circle.fill")
-                    .resizable()
-                    .foregroundColor(statusRed)
-                    .shadow(radius: 5)
-                    .scaledToFit()
-                    .frame(width: 50, height: 50)
+                ZStack {
+                    if dataState.currentUser.online == true {
+                        Image(systemName: "circle.fill")
+                            .resizable()
+                            .foregroundColor(.blue)
+                            .scaledToFit()
+                            .frame(width: 56)
+                    }
+                    Image(systemName: "circle.fill")
+                        .resizable()
+                        .foregroundColor(.green)
+                        .shadow(radius: 5)
+                        .scaledToFit()
+                        .frame(width: 50, height: 50)
+                        .onTapGesture {
+                            Task {
+                                let success = await UpdateUser(AccountId: dataState.currentAccountId, Online: true)
+                                if success == true {
+                                    dataState.currentUser = await GetUser(AccountId: dataState.currentAccountId)
+                                }
+                            }
+                        }
+                }
+                .padding(.trailing, 30)
+                ZStack {
+                    if dataState.currentUser.online == false {
+                        Image(systemName: "circle.fill")
+                            .resizable()
+                            .foregroundColor(.blue)
+                            .scaledToFit()
+                            .frame(width: 56)
+                    }
+                    Image(systemName: "circle.fill")
+                        .resizable()
+                        .foregroundColor(statusRed)
+                        .shadow(radius: 5)
+                        .scaledToFit()
+                        .frame(width: 50, height: 50)
+                        .onTapGesture {
+                            Task {
+                                let success = await UpdateUser(AccountId: dataState.currentAccountId, Online: false)
+                                if success == true {
+                                    dataState.currentUser = await GetUser(AccountId: dataState.currentAccountId)
+                                }
+                            }
+                        }
+                }
             }
             .padding(.bottom, 40)
-            
+
             Text("Change your status:")
-            TextField("Enter data", text: $dataState.currentUser.status)
+            TextField("Enter data", text: $statusString)
                 .frame(minWidth: 100, idealWidth: 200, maxWidth: 250)
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color(.darkGray))
-                .font(.system(size: 18))
-                .padding()
-                //.cornerRadius(10)
+                .font(.system(size: 20))
+                .padding(10)
+                // .cornerRadius(10)
                 .overlay(
                     Capsule(style: .continuous)
-                        .stroke(Color(.darkGray), lineWidth: 3)
+                        .stroke(Color(.darkGray), lineWidth: 2)
                 )
                 .padding(5)
+                .onSubmit {
+                    Task {
+                        let success = await UpdateUser(AccountId: dataState.currentAccountId, Status: statusString)
+                        if success == true {
+                            dataState.currentUser = await GetUser(AccountId: dataState.currentAccountId)
+                        }
+                    }
+                }
             Spacer()
             Spacer()
             Spacer()
+        }
+        .task {
+            statusString = dataState.currentUser.status
         }
     }
 }

@@ -23,6 +23,7 @@
 		555F710F292515DA0029A9F5 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F710E292515DA0029A9F5 /* UserRequest.swift */; };
 		556B96DD29263B1E00530946 /* DataState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B96DC29263B1E00530946 /* DataState.swift */; };
 		556B96DF29265A4000530946 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B96DE29265A4000530946 /* ProfileView.swift */; };
+		55814E52292CDFC000A3B1AE /* UpdateUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55814E51292CDFC000A3B1AE /* UpdateUserRequest.swift */; };
 		55900561292A631600FC65C1 /* ActionFriendRqRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55900560292A631600FC65C1 /* ActionFriendRqRequest.swift */; };
 		55900563292A69F000FC65C1 /* RemoveFriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55900562292A69F000FC65C1 /* RemoveFriendRequest.swift */; };
 		55A553AB29250C9C000704FB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A553AA29250C9C000704FB /* User.swift */; };
@@ -50,6 +51,7 @@
 		555F710E292515DA0029A9F5 /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		556B96DC29263B1E00530946 /* DataState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataState.swift; sourceTree = "<group>"; };
 		556B96DE29265A4000530946 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		55814E51292CDFC000A3B1AE /* UpdateUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserRequest.swift; sourceTree = "<group>"; };
 		55900560292A631600FC65C1 /* ActionFriendRqRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionFriendRqRequest.swift; sourceTree = "<group>"; };
 		55900562292A69F000FC65C1 /* RemoveFriendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFriendRequest.swift; sourceTree = "<group>"; };
 		55A553AA29250C9C000704FB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				555B5D77292A4675006F2929 /* FriendshipsRequest.swift */,
 				55900560292A631600FC65C1 /* ActionFriendRqRequest.swift */,
 				55900562292A69F000FC65C1 /* RemoveFriendRequest.swift */,
+				55814E51292CDFC000A3B1AE /* UpdateUserRequest.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				556B96DF29265A4000530946 /* ProfileView.swift in Sources */,
+				55814E52292CDFC000A3B1AE /* UpdateUserRequest.swift in Sources */,
 				55900561292A631600FC65C1 /* ActionFriendRqRequest.swift in Sources */,
 				55A553AB29250C9C000704FB /* User.swift in Sources */,
 				55490B8D2929115D009E8363 /* AccountRequest.swift in Sources */,
