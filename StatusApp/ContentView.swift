@@ -5,10 +5,12 @@
 //  Created by Matthew Parker on 16/11/2022.
 //
 
+import SignalRClient
 import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var dataState: DataState
+    let signalR: SignalRService = SignalRService()
     @State var showUserView: Bool = false
     @State var showStatusView: Bool = false
     @State var showAddFriendView: Bool = false
@@ -40,6 +42,17 @@ struct ContentView: View {
                     }
                 }
                 Spacer()
+                Button("Send Message") {
+                    signalR.connection.invoke(method: "SendMessage", "User1", "TestMessage") { error in
+                        if let error = error {
+                            print("error: \(error)")
+                        } else {
+                            print("Send success")
+                        }
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+                .padding(5)
                 Button("Add Friends") {
                     showAddFriendView.toggle()
                 }
@@ -58,11 +71,12 @@ struct ContentView: View {
                 AddFriendView()
             }
             .task {
-                //if dataState.currentAccountId == -1, present fullscreen cover to "sign in"
-                 dataState.currentUser = await GetUser(AccountId: dataState.currentAccountId)
-                 dataState.currentAccount = await GetAccount(AccountId: dataState.currentAccountId)
-                 dataState.friendsList = await GetFriendsList(AccountId: dataState.currentAccountId)
+                // if dataState.currentAccountId == -1, present fullscreen cover to "sign in"
+                dataState.currentUser = await GetUser(AccountId: dataState.currentAccountId)
+                dataState.currentAccount = await GetAccount(AccountId: dataState.currentAccountId)
+                dataState.friendsList = await GetFriendsList(AccountId: dataState.currentAccountId)
                 dataState.currentAccountId = dataState.currentUser.accountId
+                UserDefaults.standard.set(dataState.currentAccountId, forKey: "AccountId")
             }
         }
     }

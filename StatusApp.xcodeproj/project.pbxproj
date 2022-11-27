@@ -26,6 +26,8 @@
 		55814E52292CDFC000A3B1AE /* UpdateUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55814E51292CDFC000A3B1AE /* UpdateUserRequest.swift */; };
 		55900561292A631600FC65C1 /* ActionFriendRqRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55900560292A631600FC65C1 /* ActionFriendRqRequest.swift */; };
 		55900563292A69F000FC65C1 /* RemoveFriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55900562292A69F000FC65C1 /* RemoveFriendRequest.swift */; };
+		55A24029292E32C900F4956F /* SignalRClient in Frameworks */ = {isa = PBXBuildFile; productRef = 55A24028292E32C900F4956F /* SignalRClient */; };
+		55A2402B292E32E400F4956F /* SignalRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A2402A292E32E400F4956F /* SignalRService.swift */; };
 		55A553AB29250C9C000704FB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A553AA29250C9C000704FB /* User.swift */; };
 		55A553B029250F09000704FB /* MessageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A553AF29250F09000704FB /* MessageRequest.swift */; };
 		55DDEF122927A7B900D1E211 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55DDEF112927A7B900D1E211 /* Config.plist */; };
@@ -54,6 +56,7 @@
 		55814E51292CDFC000A3B1AE /* UpdateUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserRequest.swift; sourceTree = "<group>"; };
 		55900560292A631600FC65C1 /* ActionFriendRqRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionFriendRqRequest.swift; sourceTree = "<group>"; };
 		55900562292A69F000FC65C1 /* RemoveFriendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFriendRequest.swift; sourceTree = "<group>"; };
+		55A2402A292E32E400F4956F /* SignalRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalRService.swift; sourceTree = "<group>"; };
 		55A553AA29250C9C000704FB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		55A553AF29250F09000704FB /* MessageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRequest.swift; sourceTree = "<group>"; };
 		55DDEF112927A7B900D1E211 /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
@@ -66,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55A24029292E32C900F4956F /* SignalRClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +119,7 @@
 		55559B682924FD2700B58E1E /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				55A2402A292E32E400F4956F /* SignalRService.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 			);
 			name = StatusApp;
 			packageProductDependencies = (
+				55A24028292E32C900F4956F /* SignalRClient */,
 			);
 			productName = StatusApp;
 			productReference = 55559B572924FB9200B58E1E /* StatusApp.app */;
@@ -206,6 +212,7 @@
 			);
 			mainGroup = 55559B4E2924FB9200B58E1E;
 			packageReferences = (
+				55A24027292E32C900F4956F /* XCRemoteSwiftPackageReference "SignalR-Client-Swift" */,
 			);
 			productRefGroup = 55559B582924FB9200B58E1E /* Products */;
 			projectDirPath = "";
@@ -248,6 +255,7 @@
 				55490B9129291A35009E8363 /* FriendsStatusView.swift in Sources */,
 				556B96DD29263B1E00530946 /* DataState.swift in Sources */,
 				555B5D7429299600006F2929 /* AddFriendRequest.swift in Sources */,
+				55A2402B292E32E400F4956F /* SignalRService.swift in Sources */,
 				555F710F292515DA0029A9F5 /* UserRequest.swift in Sources */,
 				555B5D78292A4675006F2929 /* FriendshipsRequest.swift in Sources */,
 				55900563292A69F000FC65C1 /* RemoveFriendRequest.swift in Sources */,
@@ -455,6 +463,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		55A24027292E32C900F4956F /* XCRemoteSwiftPackageReference "SignalR-Client-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/moozzyk/SignalR-Client-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		55A24028292E32C900F4956F /* SignalRClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 55A24027292E32C900F4956F /* XCRemoteSwiftPackageReference "SignalR-Client-Swift" */;
+			productName = SignalRClient;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 55559B4F2924FB9200B58E1E /* Project object */;
 }

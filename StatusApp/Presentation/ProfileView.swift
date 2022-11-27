@@ -35,6 +35,7 @@ struct ProfileView: View {
                         await dataState.currentAccount = GetAccount(AccountId: accountIdInput)
                         await dataState.friendsList = GetFriendsList(AccountId: accountIdInput)
                         dataState.currentAccountId = dataState.currentUser.accountId
+                        UserDefaults.standard.set(dataState.currentAccountId, forKey: "AccountId")
                     }
                 }
             Group {
