@@ -14,6 +14,7 @@ struct ContentView: View {
     @State var showUserView: Bool = false
     @State var showStatusView: Bool = false
     @State var showAddFriendView: Bool = false
+    @State var showOnboardingView: Bool = false
     var statusRed = Color(UIColor(red: 0.96, green: 0, blue: 0, alpha: 1))
     var body: some View {
         NavigationStack {
@@ -69,6 +70,9 @@ struct ContentView: View {
             }
             .sheet(isPresented: $showAddFriendView) {
                 AddFriendView()
+            }
+            .fullScreenCover(isPresented: $showOnboardingView) {
+                SignInUpView()
             }
             .task {
                 // if dataState.currentAccountId == -1, present fullscreen cover to "sign in"
