@@ -9,30 +9,43 @@ import SwiftUI
 
 struct SignUpView: View {
     @State var signUpUsername: String = ""
+    @State var signUpEmail: String = ""
     @State var signUpPassword: String = ""
     @State var signUpPasswordConfirm: String = ""
     @State var signUpFirstName: String = ""
     @State var signUpLastName: String = ""
     var body: some View {
+        // Make scrolling
         VStack(spacing: 0) {
-            Text("Status")
-                .font(.largeTitle)
-            Spacer()
             Text("Sign Up")
                 .font(.system(size: 25))
-                .padding(.top)
                 .padding(.bottom, 20)
             Group {
+                Group {
+                    HStack {
+                        Text("Username:")
+                        Spacer()
+                        Text("This can't be changed later")
+                            .italic()
+                            .foregroundColor(.gray)
+                    }
+                    .padding(.horizontal)
+                    .padding(.bottom, 5)
+                    TextField("Enter your username", text: $signUpUsername)
+                        .textFieldStyle(.roundedBorder)
+                        .padding(.horizontal)
+                        .padding(.bottom, 20)
+                }
+
                 HStack {
-                    Text("Username:")
+                    Text("Email:")
                     Spacer()
-                    Text("This can't be changed later")
                         .italic()
                         .foregroundColor(.gray)
                 }
                 .padding(.horizontal)
                 .padding(.bottom, 5)
-                TextField("Enter your username", text: $signUpUsername)
+                TextField("Enter your email", text: $signUpEmail)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
                 HStack {
@@ -82,9 +95,11 @@ struct SignUpView: View {
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
             }
-            Button("Sign up") {}
-                .buttonStyle(.borderedProminent)
-                .padding(.top, 20)
+            Button("Sign up") {
+                //var success = await CreateUser(UserName: signUpUsername, Password: signUpPassword, Email: signUpEmail, FirstName: signUpFirstName, LastName: signUpLastName)
+            }
+            .buttonStyle(.borderedProminent)
+            .padding(.top, 20)
             Spacer()
         }
     }
