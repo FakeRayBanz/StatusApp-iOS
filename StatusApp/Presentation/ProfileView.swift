@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var dataState: DataState
+    @Binding var showProfileView: Bool
+    @Binding var showOnboardingView: Bool
     @State var userNameInput: String = ""
     var body: some View {
         VStack {
@@ -32,10 +34,10 @@ struct ProfileView: View {
                 .onSubmit {
                     Task {
                         await dataState.currentUser = GetUser(userName: userNameInput)
-                        // await dataState.currentAccount = GetAccount(userName: userNameInput)
-                        await dataState.friendsList = GetFriendsList(userName: userNameInput)
                         dataState.currentUserName = dataState.currentUser.userName
                         UserDefaults.standard.set(dataState.currentUserName, forKey: "userName")
+                        // await dataState.currentAccount = GetAccount(userName: userNameInput)
+                        await dataState.friendsList = GetFriendsList(userName: userNameInput)
                     }
                 }
             Group {
@@ -57,16 +59,28 @@ struct ProfileView: View {
             }
 
             Spacer()
-                .task {
-                    userNameInput = dataState.currentUserName
+            Button("Sign Out") {
+                dataState.currentUserName = ""
+                UserDefaults.standard.set("", forKey: "userName")
+                showProfileView = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    showOnboardingView = true
                 }
+                dataState.currentUser = User()
+                dataState.friendsList.removeAll()
+                dataState.friendships.removeAll()
+            }
+            .buttonStyle(.borderedProminent)
+        }
+        .task {
+            userNameInput = dataState.currentUserName
         }
     }
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(showProfileView: .constant(true), showOnboardingView: .constant(false))
             .environmentObject(DataState())
     }
 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var dataState: DataState
     let signalR: SignalRService = SignalRService()
-    @State var showUserView: Bool = false
+    @State var showProfileView: Bool = false
     @State var showStatusView: Bool = false
     @State var showAddFriendView: Bool = false
     @State var showOnboardingView: Bool = false
@@ -20,7 +20,7 @@ struct ContentView: View {
         NavigationStack {
             VStack {
                 HStack {
-                    Button(action: { showUserView.toggle() }) {
+                    Button(action: { showProfileView.toggle() }) {
                         Image(systemName: "person.crop.circle.fill")
                             .resizable()
                             .scaledToFit()
@@ -62,8 +62,8 @@ struct ContentView: View {
                 FriendsStatusView()
                 Spacer()
             }
-            .sheet(isPresented: $showUserView) {
-                ProfileView()
+            .sheet(isPresented: $showProfileView) {
+                ProfileView(showProfileView: $showProfileView, showOnboardingView:  $showOnboardingView)
             }
             .sheet(isPresented: $showStatusView) {
                 StatusView()
