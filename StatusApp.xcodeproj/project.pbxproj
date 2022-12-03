@@ -35,6 +35,7 @@
 		55DDEF162927C03C00D1E211 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DDEF152927C03C00D1E211 /* ChatView.swift */; };
 		55DDEF1C2927CB4800D1E211 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DDEF1B2927CB4800D1E211 /* StatusView.swift */; };
 		55E2E0DE293B2CF800D6EB8F /* SignInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E2E0DD293B2CF800D6EB8F /* SignInRequest.swift */; };
+		55E61A1A293B75E6002A61BD /* SignUpPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E61A19293B75E6002A61BD /* SignUpPasswordView.swift */; };
 		55E6AA382935F53000EB2B64 /* SignInUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E6AA372935F53000EB2B64 /* SignInUpView.swift */; };
 		55E6AA3A293603C000EB2B64 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E6AA39293603C000EB2B64 /* SignUpView.swift */; };
 /* End PBXBuildFile section */
@@ -68,6 +69,7 @@
 		55DDEF152927C03C00D1E211 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		55DDEF1B2927CB4800D1E211 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		55E2E0DD293B2CF800D6EB8F /* SignInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
+		55E61A19293B75E6002A61BD /* SignUpPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPasswordView.swift; sourceTree = "<group>"; };
 		55E6AA372935F53000EB2B64 /* SignInUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUpView.swift; sourceTree = "<group>"; };
 		55E6AA39293603C000EB2B64 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -154,6 +156,7 @@
 				555B5D71292993E5006F2929 /* AddFriendView.swift */,
 				55E6AA372935F53000EB2B64 /* SignInUpView.swift */,
 				55E6AA39293603C000EB2B64 /* SignUpView.swift */,
+				55E61A19293B75E6002A61BD /* SignUpPasswordView.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				555B5D7429299600006F2929 /* AddFriendRequest.swift in Sources */,
 				55A2402B292E32E400F4956F /* SignalRService.swift in Sources */,
 				555F710F292515DA0029A9F5 /* UserRequest.swift in Sources */,
+				55E61A1A293B75E6002A61BD /* SignUpPasswordView.swift in Sources */,
 				555B5D78292A4675006F2929 /* FriendshipsRequest.swift in Sources */,
 				55900563292A69F000FC65C1 /* RemoveFriendRequest.swift in Sources */,
 				55559B5D2924FB9200B58E1E /* ContentView.swift in Sources */,

@@ -10,7 +10,7 @@ import SignalRClient
 
 public class SignalRService {
     var connection: HubConnection
-    //var accountId = UserDefaults.standard.integer(forKey: "AccountId")
+    // var accountId = UserDefaults.standard.integer(forKey: "AccountId")
     var userName: String = "BigMaurice"
     public init() {
         let path: String = Bundle.main.path(forResource: "Config", ofType: "plist")!
@@ -23,9 +23,11 @@ public class SignalRService {
             self.handleMessage(message, from: user)
         })
         connection.on(method: "ReceiveUpdatedUser", callback: { (friend: User) in
-            for i in 0 ... (dataState.friendsList.count - 1) {
-                if dataState.friendsList[i].userName == friend.userName {
-                    dataState.friendsList[i] = friend
+            if dataState.friendsList.count != 0 {
+                for i in 0 ... (dataState.friendsList.count - 1) {
+                    if dataState.friendsList[i].userName == friend.userName {
+                        dataState.friendsList[i] = friend
+                    }
                 }
             }
         })

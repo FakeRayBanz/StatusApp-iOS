@@ -54,7 +54,7 @@ struct ContentView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .padding(5)
-                Button("Add Friends") {
+                Button("Manage Friends") {
                     showAddFriendView.toggle()
                 }
                 .buttonStyle(.borderedProminent)

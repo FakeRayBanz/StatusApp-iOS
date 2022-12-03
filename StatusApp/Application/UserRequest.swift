@@ -13,7 +13,7 @@ func GetUser(userName: String) async -> User {
     let connectionString = config.object(forKey: "connectionString") as! String
 
     var user = User()
-    guard var urlComponents = URLComponents(string: "\(connectionString)/getuser")
+    guard var urlComponents = URLComponents(string: "\(connectionString)/getUser")
     else {
         print("Invalid URL")
         return User()

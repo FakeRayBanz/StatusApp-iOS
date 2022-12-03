@@ -15,14 +15,14 @@ func GetFriendsList(userName: String) async -> [User] {
     guard var urlComponents = URLComponents(string: "\(connectionString)/getfriends")
     else {
         print("Invalid URL")
-        return []
+        return friendsList
     }
     urlComponents.queryItems = [URLQueryItem(name: "userName", value: userName)]
 
     guard let url = urlComponents.url
     else {
         print("Invalid URL")
-        return []
+        return friendsList
     }
 
     do {

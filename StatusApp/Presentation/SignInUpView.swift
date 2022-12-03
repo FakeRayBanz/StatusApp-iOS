@@ -64,7 +64,7 @@ struct SignInUpView: View {
                 Text("Don't have an account?")
                     .padding(.bottom, 12)
                 NavigationLink {
-                    SignUpView()
+                    SignUpView(showOnboardingView: $showOnboardingView)
                 } label: {
                     Text("Sign up")
                 }

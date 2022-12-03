@@ -33,11 +33,11 @@ struct ProfileView: View {
                 .padding(.bottom, 50)
                 .onSubmit {
                     Task {
-                        await dataState.currentUser = GetUser(userName: userNameInput)
+                        dataState.currentUser = await GetUser(userName: userNameInput)
                         dataState.currentUserName = dataState.currentUser.userName
                         UserDefaults.standard.set(dataState.currentUserName, forKey: "userName")
                         // await dataState.currentAccount = GetAccount(userName: userNameInput)
-                        await dataState.friendsList = GetFriendsList(userName: userNameInput)
+                        dataState.friendsList = await GetFriendsList(userName: userNameInput)
                     }
                 }
             Group {

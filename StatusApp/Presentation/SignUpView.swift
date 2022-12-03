@@ -10,12 +10,11 @@ import SwiftUI
 struct SignUpView: View {
     @State var signUpUsername: String = ""
     @State var signUpEmail: String = ""
-    @State var signUpPassword: String = ""
-    @State var signUpPasswordConfirm: String = ""
     @State var signUpFirstName: String = ""
     @State var signUpLastName: String = ""
+    @Binding var showOnboardingView: Bool
     var body: some View {
-        // Make scrolling
+        // TODO: Input Validation
         VStack(spacing: 0) {
             Text("Sign Up")
                 .font(.system(size: 25))
@@ -33,43 +32,29 @@ struct SignUpView: View {
                     .padding(.bottom, 5)
                     TextField("Enter your username", text: $signUpUsername)
                         .textFieldStyle(.roundedBorder)
+                        .autocapitalization(.none)
+                        .autocorrectionDisabled()
                         .padding(.horizontal)
                         .padding(.bottom, 20)
                 }
 
-                HStack {
-                    Text("Email:")
-                    Spacer()
-                        .italic()
-                        .foregroundColor(.gray)
-                }
-                .padding(.horizontal)
-                .padding(.bottom, 5)
-                TextField("Enter your email", text: $signUpEmail)
-                    .textFieldStyle(.roundedBorder)
-                    .padding(.horizontal)
-                HStack {
-                    Text("Password:")
-                    Spacer()
-                }
-                .padding(.horizontal)
-                .padding(.bottom, 5)
-                .padding(.top, 20)
-                SecureField("Enter your password", text: $signUpPassword)
-                    .textFieldStyle(.roundedBorder)
+                Group {
+                    HStack {
+                        Text("Email:")
+                        Spacer()
+                            .italic()
+                            .foregroundColor(.gray)
+                    }
                     .padding(.horizontal)
                     .padding(.bottom, 5)
-                HStack {
-                    Text("Re-enter your Password:")
-                    Spacer()
+
+                    TextField("Enter your email", text: $signUpEmail)
+                        .textFieldStyle(.roundedBorder)
+                        .autocapitalization(.none)
+                        .autocorrectionDisabled()
+                        .padding(.horizontal)
+                        .padding(.bottom, 20)
                 }
-                .padding(.horizontal)
-                .padding(.bottom, 5)
-                .padding(.top, 20)
-                SecureField("Re-enter your password", text: $signUpPasswordConfirm)
-                    .textFieldStyle(.roundedBorder)
-                    .padding(.horizontal)
-                    .padding(.bottom, 25)
             }
             Group {
                 HStack {
@@ -94,15 +79,14 @@ struct SignUpView: View {
                 TextField("Enter your last name", text: $signUpLastName)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
+                    .padding(.bottom, 25)
             }
-            Button("Sign up") {
-                Task {
-                    let success: Bool = await CreateUser(userName: signUpUsername, password: signUpPassword, email: signUpEmail, firstName: signUpFirstName, lastName: signUpLastName)
-                    print(success)
-                }
+            NavigationLink {
+                SignUpPasswordView(signUpUsername: $signUpUsername, signUpEmail: $signUpEmail, signUpFirstName: $signUpFirstName, signUpLastName: $signUpLastName, showOnboardingView: $showOnboardingView)
+            } label: {
+                Text("Continue")
             }
             .buttonStyle(.borderedProminent)
-            .padding(.top, 20)
 
             Spacer()
         }
@@ -111,6 +95,6 @@ struct SignUpView: View {
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView()
+        SignUpView(showOnboardingView: .constant(true))
     }
 }
