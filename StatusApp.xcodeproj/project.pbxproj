@@ -34,6 +34,7 @@
 		55DDEF122927A7B900D1E211 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55DDEF112927A7B900D1E211 /* Config.plist */; };
 		55DDEF162927C03C00D1E211 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DDEF152927C03C00D1E211 /* ChatView.swift */; };
 		55DDEF1C2927CB4800D1E211 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DDEF1B2927CB4800D1E211 /* StatusView.swift */; };
+		55E2E0DE293B2CF800D6EB8F /* SignInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E2E0DD293B2CF800D6EB8F /* SignInRequest.swift */; };
 		55E6AA382935F53000EB2B64 /* SignInUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E6AA372935F53000EB2B64 /* SignInUpView.swift */; };
 		55E6AA3A293603C000EB2B64 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E6AA39293603C000EB2B64 /* SignUpView.swift */; };
 /* End PBXBuildFile section */
@@ -66,6 +67,7 @@
 		55DDEF112927A7B900D1E211 /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		55DDEF152927C03C00D1E211 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		55DDEF1B2927CB4800D1E211 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
+		55E2E0DD293B2CF800D6EB8F /* SignInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
 		55E6AA372935F53000EB2B64 /* SignInUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUpView.swift; sourceTree = "<group>"; };
 		55E6AA39293603C000EB2B64 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -169,6 +171,7 @@
 				55900562292A69F000FC65C1 /* RemoveFriendRequest.swift */,
 				55814E51292CDFC000A3B1AE /* UpdateUserRequest.swift */,
 				55A853CD29376417007F2778 /* CreateUserRequest.swift */,
+				55E2E0DD293B2CF800D6EB8F /* SignInRequest.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				55559B6D2924FDC100B58E1E /* Message.swift in Sources */,
 				55490B8B292910CD009E8363 /* Account.swift in Sources */,
 				55490B8F292913C3009E8363 /* FriendsListRequest.swift in Sources */,
+				55E2E0DE293B2CF800D6EB8F /* SignInRequest.swift in Sources */,
 				55490B9129291A35009E8363 /* FriendsStatusView.swift in Sources */,
 				556B96DD29263B1E00530946 /* DataState.swift in Sources */,
 				55E6AA382935F53000EB2B64 /* SignInUpView.swift in Sources */,

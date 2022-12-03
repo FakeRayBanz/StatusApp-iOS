@@ -7,7 +7,7 @@
 
 import Foundation
 
-func SendFriendRequest(AccountId: Int, FriendId: Int) async -> Bool {
+func SendFriendRequest(userName: String, friendUserName: String) async -> Bool {
     let path: String = Bundle.main.path(forResource: "Config", ofType: "plist")!
     let config: NSDictionary = NSDictionary(contentsOfFile: path)!
     let connectionString = config.object(forKey: "connectionString") as! String
@@ -17,7 +17,7 @@ func SendFriendRequest(AccountId: Int, FriendId: Int) async -> Bool {
         print("Invalid URL")
         return false
     }
-    urlComponents.queryItems = [URLQueryItem(name: "AccountId", value: String(AccountId)), URLQueryItem(name: "FriendId", value: String(FriendId))]
+    urlComponents.queryItems = [URLQueryItem(name: "userName", value: userName), URLQueryItem(name: "friendUserName", value: friendUserName)]
     
     guard let url = urlComponents.url
     else {

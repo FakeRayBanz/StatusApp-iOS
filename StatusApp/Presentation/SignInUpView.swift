@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct SignInUpView: View {
+    @EnvironmentObject var dataState: DataState
     @State var signInUsername: String = ""
     @State var signInPassword: String = ""
+    @Binding var showOnboardingView: Bool
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
@@ -41,8 +43,21 @@ struct SignInUpView: View {
                         .textFieldStyle(.roundedBorder)
                         .padding(.horizontal)
                         .padding(.bottom, 20)
-                    Button("Sign in") {}
-                        .buttonStyle(.borderedProminent)
+                    Button("Sign in") {
+                        Task {
+                            let success = await SignInRequest(userName: signInUsername, password: signInPassword)
+                            print(success)
+                            if success == true {
+                                dataState.currentUserName = signInUsername
+                                UserDefaults.standard.set(dataState.currentUserName, forKey: "userName")
+                                dataState.currentUser = await GetUser(userName: dataState.currentUserName)
+                                dataState.friendsList = await GetFriendsList(userName: dataState.currentUserName)
+                                // TODO: Add loading state
+                                showOnboardingView = false
+                            }
+                        }
+                    }
+                    .buttonStyle(.borderedProminent)
                 }
 
                 Spacer()
@@ -63,6 +78,6 @@ struct SignInUpView: View {
 
 struct SignInUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInUpView()
+        SignInUpView(showOnboardingView: .constant(true))
     }
 }

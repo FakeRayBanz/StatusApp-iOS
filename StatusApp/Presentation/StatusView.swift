@@ -53,9 +53,9 @@ struct StatusView: View {
                         .frame(width: 50, height: 50)
                         .onTapGesture {
                             Task {
-                                let success = await UpdateUser(AccountId: dataState.currentAccountId, Online: true)
+                                let success = await UpdateUser(UserName: dataState.currentUserName, Online: true)
                                 if success == true {
-                                    dataState.currentUser = await GetUser(AccountId: dataState.currentAccountId)
+                                    dataState.currentUser = await GetUser(userName: dataState.currentUserName)
                                 }
                             }
                         }
@@ -77,9 +77,9 @@ struct StatusView: View {
                         .frame(width: 50, height: 50)
                         .onTapGesture {
                             Task {
-                                let success = await UpdateUser(AccountId: dataState.currentAccountId, Online: false)
+                                let success = await UpdateUser(UserName: dataState.currentUserName, Online: false)
                                 if success == true {
-                                    dataState.currentUser = await GetUser(AccountId: dataState.currentAccountId)
+                                    dataState.currentUser = await GetUser(userName: dataState.currentUserName)
                                 }
                             }
                         }
@@ -102,9 +102,9 @@ struct StatusView: View {
                 .padding(5)
                 .onSubmit {
                     Task {
-                        let success = await UpdateUser(AccountId: dataState.currentAccountId, Status: statusString)
+                        let success = await UpdateUser(UserName: dataState.currentUserName, Status: statusString)
                         if success == true {
-                            dataState.currentUser = await GetUser(AccountId: dataState.currentAccountId)
+                            dataState.currentUser = await GetUser(userName: dataState.currentUserName)
                         }
                     }
                 }

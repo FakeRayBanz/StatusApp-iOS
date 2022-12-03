@@ -7,7 +7,7 @@
 
 import Foundation
 
-func CreateUser(UserName: String, Password: String, Email: String, FirstName: String, LastName: String) async -> Bool {
+func CreateUser(userName: String, password: String, email: String, firstName: String, lastName: String) async -> Bool {
     let path: String = Bundle.main.path(forResource: "Config", ofType: "plist")!
     let config: NSDictionary = NSDictionary(contentsOfFile: path)!
     let connectionString = config.object(forKey: "connectionString") as! String
@@ -17,11 +17,11 @@ func CreateUser(UserName: String, Password: String, Email: String, FirstName: St
         return false
     }
     urlComponents.queryItems = [
-        URLQueryItem(name: "userName", value: String(UserName)),
-        URLQueryItem(name: "password", value: String(Password)),
-        URLQueryItem(name: "email", value: String(Email)),
-        URLQueryItem(name: "firstName", value: String(FirstName)),
-        URLQueryItem(name: "lastName", value: String(LastName))
+        URLQueryItem(name: "userName", value: userName),
+        URLQueryItem(name: "password", value: password),
+        URLQueryItem(name: "email", value: email),
+        URLQueryItem(name: "firstName", value: firstName),
+        URLQueryItem(name: "lastName", value: lastName)
     ]
 
     guard let url = urlComponents.url
@@ -38,6 +38,7 @@ func CreateUser(UserName: String, Password: String, Email: String, FirstName: St
             if httpResponse.statusCode == 200 {
                 // if let decodedResponse = try? JSONDecoder().decode(Friendship.self, from: data) {
                 // friendship = decodedResponse
+                print("Created successfully")
                 return true
 
             } else {

@@ -7,10 +7,10 @@
 
 import Foundation
 
+// TODO: This may not be needed
 struct Account: Codable {
-    var accountId: Int = -1
+    var userName: String = ""
     var email: String = ""
     var password: String = ""
-    var userName: String = ""
     var phoneNumber: String = ""
 }

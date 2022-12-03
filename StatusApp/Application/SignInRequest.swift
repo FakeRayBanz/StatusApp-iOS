@@ -1,24 +1,26 @@
 //
-//  ActionFriendRqRequest.swift
+//  SignInRequest.swift
 //  StatusApp
 //
-//  Created by Matthew Parker on 20/11/2022.
+//  Created by Matthew Parker on 3/12/2022.
 //
 
 import Foundation
 
-func ActionFriendRequest(AccountId: String, FriendId: String, Accepted: Bool) async -> Bool {
+func SignInRequest(userName: String, password: String) async -> Bool {
     let path: String = Bundle.main.path(forResource: "Config", ofType: "plist")!
     let config: NSDictionary = NSDictionary(contentsOfFile: path)!
     let connectionString = config.object(forKey: "connectionString") as! String
-    guard var urlComponents = URLComponents(string: "\(connectionString)/actionfriendrequest")
+    // var friendship: Friendship = Friendship()
+    guard var urlComponents = URLComponents(string: "\(connectionString)/signin")
     else {
         print("Invalid URL")
         return false
     }
-    urlComponents.queryItems = [URLQueryItem(name: "userName", value: AccountId),
-                                URLQueryItem(name: "friendUserName", value: FriendId),
-                                URLQueryItem(name: "accepted", value: String(Accepted))]
+    urlComponents.queryItems = [
+        URLQueryItem(name: "userName", value: userName),
+        URLQueryItem(name: "password", value: password)
+    ]
 
     guard let url = urlComponents.url
     else {
@@ -26,11 +28,12 @@ func ActionFriendRequest(AccountId: String, FriendId: String, Accepted: Bool) as
         return false
     }
     var request = URLRequest(url: url)
-    request.httpMethod = "PUT"
+    request.httpMethod = "GET"
 
     do {
         let (_, info) = try await URLSession.shared.data(for: request)
         if let httpResponse = info as? HTTPURLResponse {
+            print(httpResponse.statusCode)
             if httpResponse.statusCode == 200 {
                 // if let decodedResponse = try? JSONDecoder().decode(Friendship.self, from: data) {
                 // friendship = decodedResponse

@@ -7,7 +7,7 @@
 
 import Foundation
 
-func RemoveFriend(AccountId: Int, FriendId: Int) async -> Bool {
+func RemoveFriend(userName: String, friendUserName: String) async -> Bool {
     let path: String = Bundle.main.path(forResource: "Config", ofType: "plist")!
     let config: NSDictionary = NSDictionary(contentsOfFile: path)!
     let connectionString = config.object(forKey: "connectionString") as! String
@@ -17,8 +17,8 @@ func RemoveFriend(AccountId: Int, FriendId: Int) async -> Bool {
         print("Invalid URL")
         return false
     }
-    urlComponents.queryItems = [URLQueryItem(name: "AccountId", value: String(AccountId)), URLQueryItem(name: "FriendId", value: String(FriendId))]
-    
+    urlComponents.queryItems = [URLQueryItem(name: "userName", value: userName), URLQueryItem(name: "friendUserName", value: friendUserName)]
+
     guard let url = urlComponents.url
     else {
         print("Invalid URL")
@@ -26,15 +26,15 @@ func RemoveFriend(AccountId: Int, FriendId: Int) async -> Bool {
     }
     var request = URLRequest(url: url)
     request.httpMethod = "DELETE"
-    
+
     do {
         let (_, info) = try await URLSession.shared.data(for: request)
         if let httpResponse = info as? HTTPURLResponse {
             if httpResponse.statusCode == 200 {
-                //if let decodedResponse = try? JSONDecoder().decode(Friendship.self, from: data) {
-                    // friendship = decodedResponse
-                    return true
-                
+                // if let decodedResponse = try? JSONDecoder().decode(Friendship.self, from: data) {
+                // friendship = decodedResponse
+                return true
+
             } else {
                 return false
             }

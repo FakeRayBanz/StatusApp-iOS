@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var dataState: DataState
-    @State var accountIdInput: Int = 0
+    @State var userNameInput: String = ""
     var body: some View {
         VStack {
             Text("My Account")
@@ -17,7 +17,7 @@ struct ProfileView: View {
                 .padding(.top)
                 .padding(.bottom, 35)
             Text("Enter Account ID")
-            TextField("Enter Account ID", value: $accountIdInput, format: .number)
+            TextField("Enter User Name", text: $userNameInput)
                 .frame(minWidth: 100, idealWidth: 200, maxWidth: 250)
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color(.darkGray))
@@ -31,36 +31,22 @@ struct ProfileView: View {
                 .padding(.bottom, 50)
                 .onSubmit {
                     Task {
-                        await dataState.currentUser = GetUser(AccountId: accountIdInput)
-                        await dataState.currentAccount = GetAccount(AccountId: accountIdInput)
-                        await dataState.friendsList = GetFriendsList(AccountId: accountIdInput)
-                        dataState.currentAccountId = dataState.currentUser.accountId
-                        UserDefaults.standard.set(dataState.currentAccountId, forKey: "AccountId")
+                        await dataState.currentUser = GetUser(userName: userNameInput)
+                        // await dataState.currentAccount = GetAccount(userName: userNameInput)
+                        await dataState.friendsList = GetFriendsList(userName: userNameInput)
+                        dataState.currentUserName = dataState.currentUser.userName
+                        UserDefaults.standard.set(dataState.currentUserName, forKey: "userName")
                     }
                 }
             Group {
-                LabeledContent("Account ID") {
-                    Text(String(dataState.currentUser.accountId))
+                LabeledContent("UserName") {
+                    Text(String(dataState.currentUser.userName))
                 }.padding(.horizontal, 60)
                 LabeledContent("firstName") {
                     Text(dataState.currentUser.firstName)
                 }.padding(.horizontal, 60)
                 LabeledContent("lastName") {
                     Text(dataState.currentUser.lastName)
-                }.padding(.horizontal, 60)
-                LabeledContent("email") {
-                    Text(dataState.currentAccount.email)
-                }.padding(.horizontal, 60)
-                LabeledContent("password") {
-                    Text(dataState.currentAccount.password)
-                }.padding(.horizontal, 60)
-            }
-            Group {
-                LabeledContent("userName") {
-                    Text(dataState.currentUser.userName)
-                }.padding(.horizontal, 60)
-                LabeledContent("phoneNumber") {
-                    Text(dataState.currentAccount.phoneNumber)
                 }.padding(.horizontal, 60)
                 LabeledContent("status") {
                     Text(dataState.currentUser.status)
@@ -72,7 +58,7 @@ struct ProfileView: View {
 
             Spacer()
                 .task {
-                    accountIdInput = dataState.currentAccountId
+                    userNameInput = dataState.currentUserName
                 }
         }
     }

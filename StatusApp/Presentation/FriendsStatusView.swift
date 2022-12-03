@@ -11,7 +11,7 @@ struct FriendsStatusView: View {
     @EnvironmentObject var dataState: DataState
     var statusRed = Color(UIColor(red: 0.96, green: 0, blue: 0, alpha: 1))
     var body: some View {
-        ForEach(dataState.friendsList, id: \.accountId) { friend in
+        ForEach(dataState.friendsList, id: \.userName) { friend in
             NavigationLink {
                 ChatView()
             } label: {

@@ -10,12 +10,13 @@ import SignalRClient
 
 public class SignalRService {
     var connection: HubConnection
-    var accountId = UserDefaults.standard.integer(forKey: "AccountId")
+    //var accountId = UserDefaults.standard.integer(forKey: "AccountId")
+    var userName: String = "BigMaurice"
     public init() {
         let path: String = Bundle.main.path(forResource: "Config", ofType: "plist")!
         let config: NSDictionary = NSDictionary(contentsOfFile: path)!
         let connectionString = config.object(forKey: "connectionString") as! String
-        let url = URL(string: "\(connectionString)/statushub?AccountId=\(String(accountId))")!
+        let url = URL(string: "\(connectionString)/statushub?userName=\(userName)")!
 
         connection = HubConnectionBuilder(url: url).withLogging(minLogLevel: .error).build()
         connection.on(method: "ReceiveMessage", callback: { (user: String, message: String) in
@@ -23,21 +24,13 @@ public class SignalRService {
         })
         connection.on(method: "ReceiveUpdatedUser", callback: { (friend: User) in
             for i in 0 ... (dataState.friendsList.count - 1) {
-                if dataState.friendsList[i].accountId == friend.accountId {
+                if dataState.friendsList[i].userName == friend.userName {
                     dataState.friendsList[i] = friend
                 }
             }
         })
         connection.start()
         // Add connectionStatusDelegate
-        Thread.sleep(forTimeInterval: 1)
-        connection.invoke(method: "SendMessage", "User1", "TestMessage") { error in
-            if let error = error {
-                print("error: \(error)")
-            } else {
-                print("Send success")
-            }
-        }
     }
 
     private func handleMessage(_ message: String, from user: String) {

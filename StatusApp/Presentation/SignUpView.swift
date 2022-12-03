@@ -96,10 +96,14 @@ struct SignUpView: View {
                     .padding(.horizontal)
             }
             Button("Sign up") {
-                //var success = await CreateUser(UserName: signUpUsername, Password: signUpPassword, Email: signUpEmail, FirstName: signUpFirstName, LastName: signUpLastName)
+                Task {
+                    let success: Bool = await CreateUser(userName: signUpUsername, password: signUpPassword, email: signUpEmail, firstName: signUpFirstName, lastName: signUpLastName)
+                    print(success)
+                }
             }
             .buttonStyle(.borderedProminent)
             .padding(.top, 20)
+
             Spacer()
         }
     }

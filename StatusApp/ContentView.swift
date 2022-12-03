@@ -72,15 +72,26 @@ struct ContentView: View {
                 AddFriendView()
             }
             .fullScreenCover(isPresented: $showOnboardingView) {
-                SignInUpView()
+                SignInUpView(showOnboardingView: $showOnboardingView)
             }
             .task {
                 // if dataState.currentAccountId == -1, present fullscreen cover to "sign in"
-                dataState.currentUser = await GetUser(AccountId: dataState.currentAccountId)
-                dataState.currentAccount = await GetAccount(AccountId: dataState.currentAccountId)
-                dataState.friendsList = await GetFriendsList(AccountId: dataState.currentAccountId)
-                dataState.currentAccountId = dataState.currentUser.accountId
-                UserDefaults.standard.set(dataState.currentAccountId, forKey: "AccountId")
+                print("CurrentUserName: " + dataState.currentUserName)
+                if dataState.currentUserName != "" {
+                    dataState.currentUser = await GetUser(userName: dataState.currentUserName)
+                    // dataState.currentAccount = await GetAccount(userName: dataState.currentUserName)
+                    dataState.friendsList = await GetFriendsList(userName: dataState.currentUserName)
+
+                } else {
+                    showOnboardingView = true
+                }
+                signalR.connection.invoke(method: "SendMessage", "User1", "TestMessage") { error in
+                    if let error = error {
+                        print("error: \(error)")
+                    } else {
+                        print("Send success")
+                    }
+                }
             }
         }
     }
