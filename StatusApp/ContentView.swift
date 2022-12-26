@@ -79,7 +79,9 @@ struct ContentView: View {
                 print("CurrentUserName: " + dataState.currentUserName)
                 if dataState.currentUserName != "" {
                     dataState.currentUser = await GetUser(userName: dataState.currentUserName)
-                    // dataState.currentAccount = await GetAccount(userName: dataState.currentUserName)
+                    if dataState.currentUser == User() {
+                        showOnboardingView = true
+                    }
                     dataState.friendsList = await GetFriendsList(userName: dataState.currentUserName)
 
                 } else {

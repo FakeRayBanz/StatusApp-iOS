@@ -60,6 +60,9 @@ struct ProfileView: View {
 
             Spacer()
             Button("Sign Out") {
+                Task {
+                    await SignOut()
+                }
                 dataState.currentUserName = ""
                 UserDefaults.standard.set("", forKey: "userName")
                 showProfileView = false
