@@ -31,7 +31,7 @@ public class SignalRService {
                 }
             }
         })
-        connection.start()
+        //connection.start()
         // Add connectionStatusDelegate
     }
 

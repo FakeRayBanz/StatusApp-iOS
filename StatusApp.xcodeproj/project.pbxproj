@@ -39,6 +39,7 @@
 		55E61A1A293B75E6002A61BD /* SignUpPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E61A19293B75E6002A61BD /* SignUpPasswordView.swift */; };
 		55E6AA382935F53000EB2B64 /* SignInUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E6AA372935F53000EB2B64 /* SignInUpView.swift */; };
 		55E6AA3A293603C000EB2B64 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E6AA39293603C000EB2B64 /* SignUpView.swift */; };
+		55F653CB295E8FB600F646C0 /* CheckAuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F653CA295E8FB600F646C0 /* CheckAuthRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		55E61A19293B75E6002A61BD /* SignUpPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPasswordView.swift; sourceTree = "<group>"; };
 		55E6AA372935F53000EB2B64 /* SignInUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUpView.swift; sourceTree = "<group>"; };
 		55E6AA39293603C000EB2B64 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		55F653CA295E8FB600F646C0 /* CheckAuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckAuthRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 				55A853CD29376417007F2778 /* CreateUserRequest.swift */,
 				55E2E0DD293B2CF800D6EB8F /* SignInRequest.swift */,
 				559A4FB1295922FD00F67726 /* SignOutRequest.swift */,
+				55F653CA295E8FB600F646C0 /* CheckAuthRequest.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				55E6AA3A293603C000EB2B64 /* SignUpView.swift in Sources */,
 				55490B8D2929115D009E8363 /* AccountRequest.swift in Sources */,
 				555B5D72292993E5006F2929 /* AddFriendView.swift in Sources */,
+				55F653CB295E8FB600F646C0 /* CheckAuthRequest.swift in Sources */,
 				55DDEF1C2927CB4800D1E211 /* StatusView.swift in Sources */,
 				559A4FB2295922FD00F67726 /* SignOutRequest.swift in Sources */,
 				55DDEF162927C03C00D1E211 /* ChatView.swift in Sources */,

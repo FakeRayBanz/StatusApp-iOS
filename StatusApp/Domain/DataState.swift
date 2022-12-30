@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 var dataState = DataState()
+let signalR: SignalRService = SignalRService()
 
 public class DataState: ObservableObject {
     @Published var currentUser: User = User();

@@ -10,7 +10,6 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var dataState: DataState
-    let signalR: SignalRService = SignalRService()
     @State var showProfileView: Bool = false
     @State var showStatusView: Bool = false
     @State var showAddFriendView: Bool = false
@@ -51,6 +50,13 @@ struct ContentView: View {
                             print("Send success")
                         }
                     }
+                    signalR.connection.invoke(method: "GetConnectionUserName", resultType: String.self) { result, error in
+                        if let error = error {
+                            print("error: \(error)")
+                        } else {
+                            print(result!)
+                        }
+                    }
                 }
                 .buttonStyle(.borderedProminent)
                 .padding(5)
@@ -63,7 +69,7 @@ struct ContentView: View {
                 Spacer()
             }
             .sheet(isPresented: $showProfileView) {
-                ProfileView(showProfileView: $showProfileView, showOnboardingView:  $showOnboardingView)
+                ProfileView(showProfileView: $showProfileView, showOnboardingView: $showOnboardingView)
             }
             .sheet(isPresented: $showStatusView) {
                 StatusView()
@@ -75,24 +81,23 @@ struct ContentView: View {
                 SignInUpView(showOnboardingView: $showOnboardingView)
             }
             .task {
-                // if dataState.currentAccountId == -1, present fullscreen cover to "sign in"
-                print("CurrentUserName: " + dataState.currentUserName)
-                if dataState.currentUserName != "" {
+                if await CheckAuth() == true {
+                    print("CurrentUserName: " + dataState.currentUserName)
                     dataState.currentUser = await GetUser(userName: dataState.currentUserName)
-                    if dataState.currentUser == User() {
-                        showOnboardingView = true
-                    }
                     dataState.friendsList = await GetFriendsList(userName: dataState.currentUserName)
-
+                    signalR.connection.start()
+                    // TODO: Get connection status working
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        signalR.connection.invoke(method: "SendMessage", "User1", "TestMessage") { error in
+                            if let error = error {
+                                print("error: \(error)")
+                            } else {
+                                print("Send success")
+                            }
+                        }
+                    }
                 } else {
                     showOnboardingView = true
-                }
-                signalR.connection.invoke(method: "SendMessage", "User1", "TestMessage") { error in
-                    if let error = error {
-                        print("error: \(error)")
-                    } else {
-                        print("Send success")
-                    }
                 }
             }
         }
