@@ -48,6 +48,7 @@ struct SignInUpView: View {
                             let success = await SignInRequest(userName: signInUsername, password: signInPassword)
                             print(success)
                             if success == true {
+                                signalR.connection.start()
                                 dataState.currentUserName = signInUsername
                                 UserDefaults.standard.set(dataState.currentUserName, forKey: "userName")
                                 dataState.currentUser = await GetUser(userName: dataState.currentUserName)

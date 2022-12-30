@@ -47,6 +47,7 @@ struct SignUpPasswordView: View {
                     let success: Bool = await CreateUser(userName: signUpUsername, password: signUpPassword, email: signUpEmail, firstName: signUpFirstName, lastName: signUpLastName)
                     print(success)
                     if success == true {
+                        signalR.connection.start()
                         dataState.currentUserName = signUpUsername
                         UserDefaults.standard.set(dataState.currentUserName, forKey: "userName")
                         dataState.currentUser = await GetUser(userName: dataState.currentUserName)
