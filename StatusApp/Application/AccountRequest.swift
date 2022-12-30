@@ -7,7 +7,7 @@
 
 import Foundation
 
-func GetAccount(userName: String) async -> Account {
+func GetAccount() async -> Account {
     let path: String = Bundle.main.path(forResource: "Config", ofType: "plist")!
     let config: NSDictionary = NSDictionary(contentsOfFile: path)!
     let connectionString = config.object(forKey: "connectionString") as! String
@@ -17,7 +17,7 @@ func GetAccount(userName: String) async -> Account {
         print("Invalid URL")
         return Account()
     }
-    urlComponents.queryItems = [URLQueryItem(name: "userName", value: userName)]
+    urlComponents.queryItems = []
 
     guard let url = urlComponents.url
     else {

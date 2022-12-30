@@ -17,9 +17,7 @@ func SignOut() async -> Bool {
         print("Invalid URL")
         return false
     }
-    urlComponents.queryItems = [
-       
-    ]
+    urlComponents.queryItems = []
 
     guard let url = urlComponents.url
     else {

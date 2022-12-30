@@ -23,12 +23,12 @@ struct AddFriendView: View {
                 .onSubmit {
                     print("submitted")
                     Task {
-                        let requestSucceeded = await SendFriendRequest(userName: dataState.currentUserName, friendUserName: searchString)
+                        let requestSucceeded = await SendFriendRequest(friendUserName: searchString)
                         if requestSucceeded == true {
                             errorString = "Request successfully sent"
                             // Task get request list
                             Task {
-                                dataState.friendships = await GetFriendships(userName: dataState.currentUserName)
+                                dataState.friendships = await GetFriendships()
                             }
                         } else {
                             errorString = "That username does not exist"
@@ -45,11 +45,11 @@ struct AddFriendView: View {
                     if friend.areFriends == true, friend.accepted == true {
                         Button("Remove Friend") {
                             Task {
-                                let success = await RemoveFriend(userName: friend.userName, friendUserName: friend.friendUserName)
+                                let success = await RemoveFriend(friendUserName: friend.friendUserName)
                                 if success == true {
                                     Task {
-                                        dataState.friendships = await GetFriendships(userName: dataState.currentUserName)
-                                        dataState.friendsList = await GetFriendsList(userName: dataState.currentUserName)
+                                        dataState.friendships = await GetFriendships()
+                                        dataState.friendsList = await GetFriendsList()
                                     }
                                 }
                             }
@@ -58,10 +58,10 @@ struct AddFriendView: View {
                     if friend.areFriends == false, friend.accepted == true {
                         Button("Cancel Request") {
                             Task {
-                                let success = await ActionFriendRequest(AccountId: friend.userName, FriendId: friend.friendUserName, Accepted: false)
+                                let success = await ActionFriendRequest(friendUserName: friend.friendUserName, accepted: false)
                                 if success == true {
                                     Task {
-                                        dataState.friendships = await GetFriendships(userName: dataState.currentUserName)
+                                        dataState.friendships = await GetFriendships()
                                     }
                                 }
                             }
@@ -70,11 +70,11 @@ struct AddFriendView: View {
                     if friend.areFriends == false, friend.accepted == false {
                         Button("Accept Request") {
                             Task {
-                                let success = await ActionFriendRequest(AccountId: friend.userName, FriendId: friend.friendUserName, Accepted: true)
+                                let success = await ActionFriendRequest(friendUserName: friend.friendUserName, accepted: true)
                                 if success == true {
                                     Task {
-                                        dataState.friendships = await GetFriendships(userName: dataState.currentUserName)
-                                        dataState.friendsList = await GetFriendsList(userName: dataState.currentUserName)
+                                        dataState.friendships = await GetFriendships()
+                                        dataState.friendsList = await GetFriendsList()
                                     }
                                 }
                             }
@@ -88,7 +88,7 @@ struct AddFriendView: View {
             Spacer()
         }
         .task {
-            dataState.friendships = await GetFriendships(userName: dataState.currentUserName)
+            dataState.friendships = await GetFriendships()
         }
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-func GetFriendships(userName: String) async -> [Friendship] {
+func GetFriendships() async -> [Friendship] {
     let path: String = Bundle.main.path(forResource: "Config", ofType: "plist")!
     let config: NSDictionary = NSDictionary(contentsOfFile: path)!
     let connectionString = config.object(forKey: "connectionString") as! String
@@ -17,7 +17,7 @@ func GetFriendships(userName: String) async -> [Friendship] {
         print("Invalid URL")
         return friendships
     }
-    urlComponents.queryItems = [URLQueryItem(name: "userName", value: userName)]
+    urlComponents.queryItems = []
 
     guard let url = urlComponents.url
     else {

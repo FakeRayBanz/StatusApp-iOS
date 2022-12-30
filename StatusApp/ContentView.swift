@@ -83,8 +83,8 @@ struct ContentView: View {
             .task {
                 if await CheckAuth() == true {
                     print("CurrentUserName: " + dataState.currentUserName)
-                    dataState.currentUser = await GetUser(userName: dataState.currentUserName)
-                    dataState.friendsList = await GetFriendsList(userName: dataState.currentUserName)
+                    dataState.currentUser = await GetUser()
+                    dataState.friendsList = await GetFriendsList()
                     signalR.connection.start()
                     // TODO: Get connection status working
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {

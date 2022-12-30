@@ -51,8 +51,8 @@ struct SignInUpView: View {
                                 signalR.connection.start()
                                 dataState.currentUserName = signInUsername
                                 UserDefaults.standard.set(dataState.currentUserName, forKey: "userName")
-                                dataState.currentUser = await GetUser(userName: dataState.currentUserName)
-                                dataState.friendsList = await GetFriendsList(userName: dataState.currentUserName)
+                                dataState.currentUser = await GetUser()
+                                dataState.friendsList = await GetFriendsList()
                                 // TODO: Add loading state
                                 showOnboardingView = false
                             }

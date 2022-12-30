@@ -7,7 +7,7 @@
 
 import Foundation
 
-func UpdateUser(UserName: String, FirstName: String? = nil, LastName: String? = nil, Email: String? = nil, Status: String? = nil, Online: Bool? = nil) async -> Bool {
+func UpdateUser(firstName: String? = nil, lastName: String? = nil, email: String? = nil, status: String? = nil, online: Bool? = nil) async -> Bool {
     let path: String = Bundle.main.path(forResource: "Config", ofType: "plist")!
     let config: NSDictionary = NSDictionary(contentsOfFile: path)!
     let connectionString = config.object(forKey: "connectionString") as! String
@@ -16,20 +16,20 @@ func UpdateUser(UserName: String, FirstName: String? = nil, LastName: String? = 
         print("Invalid URL")
         return false
     }
-    var queryItems: [URLQueryItem] = [URLQueryItem(name: "userName", value: String(UserName))]
-    if let firstName = FirstName {
+    var queryItems: [URLQueryItem] = []
+    if let firstName = firstName {
         queryItems.append(URLQueryItem(name: "firstName", value: String(firstName)))
     }
-    if let lastName = LastName {
+    if let lastName = lastName {
         queryItems.append(URLQueryItem(name: "lastName", value: String(lastName)))
     }
-    if let email = Email {
+    if let email = email {
         queryItems.append(URLQueryItem(name: "email", value: String(email)))
     }
-    if let status = Status {
+    if let status = status {
         queryItems.append(URLQueryItem(name: "status", value: String(status)))
     }
-    if let online = Online {
+    if let online = online {
         queryItems.append(URLQueryItem(name: "online", value: String(online)))
     }
     urlComponents.queryItems = queryItems
