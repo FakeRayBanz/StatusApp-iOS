@@ -30,7 +30,7 @@ func CheckAuth() async -> Bool {
     do {
         let (_, info) = try await URLSession.shared.data(for: request)
         if let httpResponse = info as? HTTPURLResponse {
-            print(httpResponse.statusCode)
+            // print(httpResponse.statusCode)
             if httpResponse.statusCode == 200 {
                 return true
             } else if httpResponse.statusCode == 401 {

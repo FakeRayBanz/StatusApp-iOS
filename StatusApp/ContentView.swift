@@ -43,7 +43,7 @@ struct ContentView: View {
                 }
                 Spacer()
                 Button("Send Message") {
-                    signalR.connection.invoke(method: "SendMessage", "User1", "TestMessage") { error in
+                    signalR.connection.invoke(method: "SendMessage", dataState.currentUserName, "TestMessage") { error in
                         if let error = error {
                             print("error: \(error)")
                         } else {
@@ -86,16 +86,6 @@ struct ContentView: View {
                     dataState.currentUser = await GetUser()
                     dataState.friendsList = await GetFriendsList()
                     signalR.connection.start()
-                    // TODO: Get connection status working
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                        signalR.connection.invoke(method: "SendMessage", "User1", "TestMessage") { error in
-                            if let error = error {
-                                print("error: \(error)")
-                            } else {
-                                print("Send success")
-                            }
-                        }
-                    }
                 } else {
                     showOnboardingView = true
                 }
