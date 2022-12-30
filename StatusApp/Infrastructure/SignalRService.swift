@@ -39,7 +39,7 @@ public class SignalRService {
         let connectionString = config.object(forKey: "connectionString") as! String
         let url = URL(string: "\(connectionString)/statushub")!
 
-        connection = HubConnectionBuilder(url: url).withHubConnectionDelegate(delegate: signalRConnectionDelegate!).withLogging(minLogLevel: .error).build()
+        connection = HubConnectionBuilder(url: url).withHubConnectionDelegate(delegate: signalRConnectionDelegate!).withAutoReconnect().withLogging(minLogLevel: .error).build()
         connection.on(method: "ReceiveMessage", callback: { (user: String, message: String) in
             self.handleMessage(message, from: user)
         })
