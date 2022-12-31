@@ -18,12 +18,11 @@ struct ProfileView: View {
                 .font(.largeTitle)
                 .padding(.top)
                 .padding(.bottom, 35)
-            Text("Enter Account ID")
-            TextField("Enter User Name", text: $userNameInput)
+            Text(dataState.currentUserName)
                 .frame(minWidth: 100, idealWidth: 200, maxWidth: 250)
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color(.darkGray))
-                .font(.system(size: 20))
+                .font(.system(size: 26))
                 .padding(10)
                 .overlay(
                     Capsule(style: .continuous)
@@ -31,14 +30,6 @@ struct ProfileView: View {
                 )
                 .padding(.top, 5)
                 .padding(.bottom, 50)
-                .onSubmit {
-                    Task {
-                        dataState.currentUser = await GetUser()
-                        dataState.currentUserName = dataState.currentUser.userName
-                        UserDefaults.standard.set(dataState.currentUserName, forKey: "userName")
-                        dataState.friendsList = await GetFriendsList()
-                    }
-                }
             Group {
                 LabeledContent("UserName") {
                     Text(String(dataState.currentUser.userName))
