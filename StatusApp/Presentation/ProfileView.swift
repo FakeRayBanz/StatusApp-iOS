@@ -11,7 +11,6 @@ struct ProfileView: View {
     @EnvironmentObject var dataState: DataState
     @Binding var showProfileView: Bool
     @Binding var showOnboardingView: Bool
-    @State var userNameInput: String = ""
     var body: some View {
         VStack {
             Text("My Account")
@@ -53,6 +52,7 @@ struct ProfileView: View {
                 Task {
                     await SignOut()
                 }
+                signalR.connection.stop()
                 dataState.currentUserName = ""
                 UserDefaults.standard.set("", forKey: "userName")
                 showProfileView = false
@@ -64,9 +64,6 @@ struct ProfileView: View {
                 dataState.friendships.removeAll()
             }
             .buttonStyle(.borderedProminent)
-        }
-        .task {
-            userNameInput = dataState.currentUserName
         }
     }
 }
