@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var dataState: DataState
+    @Environment(\.scenePhase) var scenePhase
     @State var showProfileView: Bool = false
     @State var showStatusView: Bool = false
     @State var showAddFriendView: Bool = false
@@ -88,6 +89,32 @@ struct ContentView: View {
                     signalR.connection.start()
                 } else {
                     showOnboardingView = true
+                }
+            }
+            .onChange(of: scenePhase) { newPhase in
+                if newPhase == .active {
+                    print("Changed to Active!")
+                    if dataState.signalRState == .didClose || dataState.signalRState == .didFailToOpen {
+                        print("Return to Active, reconnect to SignalR")
+                        signalR.connection.start()
+                    }
+                }
+                if newPhase == .inactive {
+                    print("Changed to Inactive!")
+                }
+                if newPhase == .background {
+                    print("Changed to Background!")
+                }
+            }
+            .onChange(of: dataState.signalRState) { newState in
+                if newState == .didOpen {
+                    print("SignalR didOpen")
+                }
+                if newState == .didClose {
+                    print("SignalR didClose")
+                }
+                if newState == .didFailToOpen {
+                    print("SignalR didFailToOpen")
                 }
             }
         }
