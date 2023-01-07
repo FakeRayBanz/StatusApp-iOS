@@ -13,7 +13,7 @@ struct FriendsStatusView: View {
     var body: some View {
         ForEach(dataState.friendsList, id: \.userName) { friend in
             NavigationLink {
-                ChatView()
+                ChatView(friend: friend)
             } label: {
                 HStack {
                     VStack {
