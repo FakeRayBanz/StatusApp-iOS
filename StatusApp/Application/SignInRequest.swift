@@ -8,10 +8,6 @@
 import Foundation
 
 func SignInRequest(userName: String, password: String) async -> Bool {
-    let path: String = Bundle.main.path(forResource: "Config", ofType: "plist")!
-    let config: NSDictionary = NSDictionary(contentsOfFile: path)!
-    let connectionString = config.object(forKey: "connectionString") as! String
-    // var friendship: Friendship = Friendship()
     guard var urlComponents = URLComponents(string: "\(connectionString)/signin")
     else {
         print("Invalid URL")

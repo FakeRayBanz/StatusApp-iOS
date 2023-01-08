@@ -8,9 +8,6 @@
 import Foundation
 
 func GetFriendsList() async -> [User] {
-    let path: String = Bundle.main.path(forResource: "Config", ofType: "plist")!
-    let config: NSDictionary = NSDictionary(contentsOfFile: path)!
-    let connectionString = config.object(forKey: "connectionString") as! String
     var friendsList: [User] = []
     guard var urlComponents = URLComponents(string: "\(connectionString)/getfriends")
     else {

@@ -8,9 +8,6 @@
 import Foundation
 
 func CreateUser(userName: String, password: String, email: String, firstName: String, lastName: String) async -> Bool {
-    let path: String = Bundle.main.path(forResource: "Config", ofType: "plist")!
-    let config: NSDictionary = NSDictionary(contentsOfFile: path)!
-    let connectionString = config.object(forKey: "connectionString") as! String
     guard var urlComponents = URLComponents(string: "\(connectionString)/createuser")
     else {
         print("Invalid URL")

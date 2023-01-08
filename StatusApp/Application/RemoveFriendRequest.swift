@@ -8,10 +8,6 @@
 import Foundation
 
 func RemoveFriend(friendUserName: String) async -> Bool {
-    let path: String = Bundle.main.path(forResource: "Config", ofType: "plist")!
-    let config: NSDictionary = NSDictionary(contentsOfFile: path)!
-    let connectionString = config.object(forKey: "connectionString") as! String
-    // var friendship: Friendship = Friendship()
     guard var urlComponents = URLComponents(string: "\(connectionString)/removefriend")
     else {
         print("Invalid URL")

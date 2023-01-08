@@ -8,9 +8,6 @@
 import Foundation
 
 func UpdateUser(firstName: String? = nil, lastName: String? = nil, email: String? = nil, status: String? = nil, online: Bool? = nil) async -> Bool {
-    let path: String = Bundle.main.path(forResource: "Config", ofType: "plist")!
-    let config: NSDictionary = NSDictionary(contentsOfFile: path)!
-    let connectionString = config.object(forKey: "connectionString") as! String
     guard var urlComponents = URLComponents(string: "\(connectionString)/updateUser")
     else {
         print("Invalid URL")
