@@ -113,6 +113,13 @@ struct ContentView: View {
             .onChange(of: dataState.signalRState) { newState in
                 if newState == .didOpen {
                     print("SignalR didOpen")
+                    signalR.connection.invoke(method: "SendMessage", dataState.currentUserName, "SignalR Connected") { error in
+                        if let error = error {
+                            print("error: \(error)")
+                        } else {
+                            print("Send success")
+                        }
+                    }
                 }
                 if newState == .didClose {
                     print("SignalR didClose")

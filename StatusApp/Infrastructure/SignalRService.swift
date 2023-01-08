@@ -11,14 +11,6 @@ import SignalRClient
 class SignalRConnectionDelegate: HubConnectionDelegate {
     func connectionDidOpen(hubConnection: SignalRClient.HubConnection) {
         dataState.signalRState = .didOpen
-        // print(dataState.signalRState)
-        signalR.connection.invoke(method: "SendMessage", dataState.currentUserName, "SignalR Connected") { error in
-            if let error = error {
-                print("error: \(error)")
-            } else {
-                print("Send success")
-            }
-        }
     }
 
     func connectionDidFailToOpen(error: Error) {
