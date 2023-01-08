@@ -40,17 +40,9 @@ public class SignalRService {
             self.handleMessage(message, from: user)
         })
         connection.on(method: "ReceiveUpdatedUser", callback: { (friend: User) in
-            // var targetUser = dataState.friendsList.filter { $0.userName == userName }
-            var existingUserFound: Bool = false
-            if dataState.friendsList.count != 0 {
-                for i in 0 ... (dataState.friendsList.count - 1) {
-                    if dataState.friendsList[i].userName == friend.userName {
-                        dataState.friendsList[i] = friend
-                        existingUserFound = true
-                    }
-                }
-            }
-            if existingUserFound == false {
+            if let targetIndex: Int = dataState.friendsList.firstIndex(where: { $0.userName == friend.userName }) {
+                dataState.friendsList[targetIndex] = friend
+            } else {
                 dataState.friendsList.append(friend)
             }
         })
