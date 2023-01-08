@@ -11,7 +11,7 @@ import SignalRClient
 class SignalRConnectionDelegate: HubConnectionDelegate {
     func connectionDidOpen(hubConnection: SignalRClient.HubConnection) {
         dataState.signalRState = .didOpen
-        //print(dataState.signalRState)
+        // print(dataState.signalRState)
         signalR.connection.invoke(method: "SendMessage", dataState.currentUserName, "SignalR Connected") { error in
             if let error = error {
                 print("error: \(error)")
@@ -34,11 +34,7 @@ public class SignalRService {
     var signalRConnectionDelegate: HubConnectionDelegate? = SignalRConnectionDelegate()
     var connection: HubConnection
     public init() {
-        let path: String = Bundle.main.path(forResource: "Config", ofType: "plist")!
-        let config: NSDictionary = NSDictionary(contentsOfFile: path)!
-        let connectionString = config.object(forKey: "connectionString") as! String
         let url = URL(string: "\(connectionString)/statushub")!
-
         connection = HubConnectionBuilder(url: url).withHubConnectionDelegate(delegate: signalRConnectionDelegate!).withAutoReconnect().withLogging(minLogLevel: .error).build()
         connection.on(method: "ReceiveMessage", callback: { (user: String, message: String) in
             self.handleMessage(message, from: user)
