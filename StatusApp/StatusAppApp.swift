@@ -13,6 +13,13 @@ struct StatusAppApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(dataState)
+
+//                    This allows code to be run for about 5 seconds when the app is terminated.
+//                    Websocket connections are terminated in the background anyway so scenePhase change to .background can
+//                    be used to close the SignalR Connection
+//                .onReceive(NotificationCenter.default.publisher(for: UIApplication.willTerminateNotification)) { _ in
+//                    print("App Terminating")
+//                }
         }
     }
 }

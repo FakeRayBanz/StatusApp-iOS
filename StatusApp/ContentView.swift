@@ -96,10 +96,8 @@ struct ContentView: View {
             .onChange(of: scenePhase) { newPhase in
                 if newPhase == .active {
                     print("Changed to Active!")
-                    // TODO: Investigate, .didClose is only set when the client terminates the connection on purpose, not due to unintentional dropped connections.
-                    //       This may never run
                     if dataState.signalRState == .didClose || dataState.signalRState == .didFailToOpen {
-                        print("Return to Active, reconnect to SignalR")
+                        print("Return to Active, reconnecting to SignalR, signalRState:\(dataState.signalRState)")
                         signalR.connection.start()
                     }
                 }
@@ -108,6 +106,10 @@ struct ContentView: View {
                 }
                 if newPhase == .background {
                     print("Changed to Background!")
+                    if dataState.signalRState == .didOpen {
+                        print("App backgrounded, gracefully closing SignalR connection")
+                        signalR.connection.stop()
+                    }
                 }
             }
             .onChange(of: dataState.signalRState) { newState in
