@@ -44,7 +44,7 @@ struct ContentView: View {
                 }
                 Spacer()
                 Button("Send Message") {
-                    signalR.connection.invoke(method: "SendMessage", dataState.currentUserName, "TestMessage") { error in
+                    signalR.connection.invoke(method: "BroadcastMessage", dataState.currentUserName, "TestMessage") { error in
                         if let error = error {
                             print("error: \(error)")
                         } else {
@@ -88,6 +88,7 @@ struct ContentView: View {
                     print("CurrentUserName: " + dataState.currentUserName)
                     dataState.currentUser = await GetUser()
                     dataState.friendsList = await GetFriendsList()
+                    dataState.friendships = await GetFriendships()
                     signalR.connection.start()
                 } else {
                     showOnboardingView = true
@@ -115,7 +116,7 @@ struct ContentView: View {
             .onChange(of: dataState.signalRState) { newState in
                 if newState == .didOpen {
                     print("SignalR didOpen")
-                    signalR.connection.invoke(method: "SendMessage", dataState.currentUserName, "SignalR Connected") { error in
+                    signalR.connection.invoke(method: "BroadcastMessage", dataState.currentUserName, "SignalR Connected") { error in
                         if let error = error {
                             print("error: \(error)")
                         } else {

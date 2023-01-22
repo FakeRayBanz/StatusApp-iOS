@@ -28,8 +28,8 @@ public class SignalRService {
     public init() {
         let url = URL(string: "\(connectionString)/statushub")!
         connection = HubConnectionBuilder(url: url).withHubConnectionDelegate(delegate: signalRConnectionDelegate!).withLogging(minLogLevel: .error).build()
-        connection.on(method: "ReceiveMessage", callback: { (user: String, message: String) in
-            self.handleMessage(message, from: user)
+        connection.on(method: "ReceiveBroadcast", callback: { (user: String, message: String) in
+            self.handleBroadcast(message, from: user)
         })
         connection.on(method: "ReceiveUpdatedUser", callback: { (friend: User) in
             if let targetIndex: Int = dataState.friendsList.firstIndex(where: { $0.userName == friend.userName }) {
@@ -38,12 +38,28 @@ public class SignalRService {
                 dataState.friendsList.append(friend)
             }
         })
+        connection.on(method: "ReceiveUpdatedFriendship", callback: { (friendship: Friendship) in
+            if let targetIndex: Int = dataState.friendships.firstIndex(where: { $0.friendUserName == friendship.friendUserName }) {
+                dataState.friendships[targetIndex] = friendship
+            } else {
+                dataState.friendships.append(friendship)
+            }
+        })
         connection.on(method: "DeleteFriend", callback: { (userName: String) in
             dataState.friendsList = dataState.friendsList.filter { $0.userName != userName }
         })
+        connection.on(method: "ReceiveMessage", callback: { (message: Message) in
+            print(message)
+            let groupId = message.groupId
+            if dataState.messages[groupId] != nil {
+                dataState.messages[groupId]?.append(message)
+                return
+            }
+            dataState.messages[groupId] = [message]
+        })
     }
 
-    private func handleMessage(_ message: String, from user: String) {
+    private func handleBroadcast(_ message: String, from user: String) {
         print(user + ": " + message)
     }
 }

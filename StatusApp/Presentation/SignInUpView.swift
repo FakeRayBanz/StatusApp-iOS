@@ -53,6 +53,7 @@ struct SignInUpView: View {
                                 UserDefaults.standard.set(dataState.currentUserName, forKey: "userName")
                                 dataState.currentUser = await GetUser()
                                 dataState.friendsList = await GetFriendsList()
+                                dataState.friendships = await GetFriendships()
                                 // TODO: Add loading state
                                 showOnboardingView = false
                             }

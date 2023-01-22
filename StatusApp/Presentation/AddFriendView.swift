@@ -48,8 +48,8 @@ struct AddFriendView: View {
                                 let success = await RemoveFriend(friendUserName: friend.friendUserName)
                                 if success == true {
                                     Task {
-                                        dataState.friendships = await GetFriendships()
                                         dataState.friendsList = await GetFriendsList()
+                                        dataState.friendships = await GetFriendships()
                                     }
                                 }
                             }

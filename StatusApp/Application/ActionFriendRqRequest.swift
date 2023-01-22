@@ -28,6 +28,7 @@ func ActionFriendRequest(friendUserName: String, accepted: Bool) async -> Bool {
         let (_, info) = try await URLSession.shared.data(for: request)
         if let httpResponse = info as? HTTPURLResponse {
             if httpResponse.statusCode == 200 {
+                // TODO: Update Friendship here
                 // if let decodedResponse = try? JSONDecoder().decode(Friendship.self, from: data) {
                 // friendship = decodedResponse
                 return true

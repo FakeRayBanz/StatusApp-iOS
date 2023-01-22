@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Message {
-    var MessageId: Int;
-    var ChatId: Int;
-    var Data: String;
-    var Created: Date;
-    var LastUpdated: Date;
-    var AuthorId: Int;
+struct Message: Codable {
+    var messageId: Int;
+    var groupId: UUID;
+    var authorUserName: String;
+    var data: String;
+    var created: String;
+    var lastUpdated: String;
 }

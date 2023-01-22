@@ -15,4 +15,5 @@ struct Friendship: Codable {
     var becameFriendsDate: String = ""
     var friendFirstName: String = ""
     var friendLastName: String = ""
+    var groupId: UUID
 }

@@ -28,5 +28,6 @@ public class DataState: ObservableObject {
     @Published var currentUserName: String = (UserDefaults.standard.string(forKey: "userName") ?? "");
     @Published var friendsList: [User] = [];
     @Published var friendships: [Friendship] = [];
-    @Published var signalRState: SignalRState = .initial
+    @Published var messages: [UUID: [Message]] = [:];
+    @Published var signalRState: SignalRState = .initial;
 }

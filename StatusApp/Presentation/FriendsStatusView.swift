@@ -11,28 +11,32 @@ struct FriendsStatusView: View {
     @EnvironmentObject var dataState: DataState
     var statusRed = Color(UIColor(red: 0.96, green: 0, blue: 0, alpha: 1))
     var body: some View {
-        ForEach(dataState.friendsList, id: \.userName) { friend in
-            NavigationLink {
-                ChatView(friend: friend)
-            } label: {
-                HStack {
-                    VStack {
-                        Text("\(friend.firstName) \(friend.lastName)")
-                            .bold()
-                        Text(friend.status)
-                            .foregroundColor(.primary)
+        if dataState.friendships.count != 0 {
+            ForEach(dataState.friendsList, id: \.userName) { friend in
+                if let friendship = dataState.friendships.first(where: { $0.friendUserName == friend.userName }) {
+                    NavigationLink {
+                        ChatView(friend: friend, groupId: friendship.groupId)
+                    } label: {
+                        HStack {
+                            VStack {
+                                Text("\(friend.firstName) \(friend.lastName)")
+                                    .bold()
+                                Text(friend.status)
+                                    .foregroundColor(.primary)
+                            }
+                            Image(systemName: "circle.fill")
+                                .resizable()
+                                .foregroundColor(friend.online ? .green : statusRed)
+                                .shadow(radius: 5)
+                                .scaledToFit()
+                                .frame(width: 35, height: 35)
+                        }
+                        .padding()
+                        .background(Color(.systemGray5))
+                        .cornerRadius(10)
+                        .padding(5)
                     }
-                    Image(systemName: "circle.fill")
-                        .resizable()
-                        .foregroundColor(friend.online ? .green : statusRed)
-                        .shadow(radius: 5)
-                        .scaledToFit()
-                        .frame(width: 35, height: 35)
                 }
-                .padding()
-                .background(Color(.systemGray5))
-                .cornerRadius(10)
-                .padding(5)
             }
         }
     }
