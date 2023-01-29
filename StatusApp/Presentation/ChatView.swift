@@ -10,39 +10,55 @@ import SwiftUI
 struct ChatView: View {
     var friend: User
     var groupId: UUID
-    var drag: some Gesture {
-        DragGesture()
-            .onChanged { _ in messageTextFieldIsFocused = false }
-    }
 
     @EnvironmentObject var dataState: DataState
     @State var messageString = ""
+    @State private var scrollTarget: Int?
     @FocusState var messageTextFieldIsFocused: Bool
     var body: some View {
         VStack {
-            // Spacer()
-            ScrollView {
-                VStack(alignment: .trailing, spacing: 0) {
-                    ForEach(dataState.messages[groupId] ?? [], id: \.messageId) { message in
-                        HStack {
-                            Text(message.data)
-                                .padding()
-                                .background(message.authorUserName != dataState.currentUserName ? Color(.systemGray5) : Color(.systemBlue))
-                                .cornerRadius(15)
-                                .padding(.trailing, message.authorUserName != dataState.currentUserName ? 50 : 0)
-                                .padding(.leading, message.authorUserName != dataState.currentUserName ? 0 : 50)
-                                .padding(2)
-                            if message.authorUserName != dataState.currentUserName {
-                                Spacer()
+            ScrollViewReader { proxy in
+                ScrollView {
+                    VStack(alignment: .trailing, spacing: 0) {
+                        ForEach(dataState.messages[groupId] ?? [], id: \.messageId) { message in
+                            HStack {
+                                Text(message.data)
+                                    .padding()
+                                    .background(message.authorUserName != dataState.currentUserName ? Color(.systemGray5) : Color(.systemBlue))
+                                    .cornerRadius(15)
+                                    .padding(.trailing, message.authorUserName != dataState.currentUserName ? 50 : 0)
+                                    .padding(.leading, message.authorUserName != dataState.currentUserName ? 0 : 50)
+                                    .padding(2)
+                                    .contextMenu {
+                                        Button("Edit") {}
+                                        Button("Delete") {}
+                                    }
+                                if message.authorUserName != dataState.currentUserName {
+                                    Spacer()
+                                }
                             }
+                            .id(message.messageId)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                }
+                // TODO: Fix view not expanding with keyboard dismiss gesture
+                .scrollDismissesKeyboard(.interactively)
+                .padding(5)
+                .navigationTitle("\(friend.firstName) \(friend.lastName)")
+                .onChange(of: scrollTarget) { target in
+                    withAnimation {
+                        proxy.scrollTo(target, anchor: .center)
+                    }
+                }
+                .onChange(of: messageTextFieldIsFocused) { value in
+                    if value == true {
+                        withAnimation {
+                            proxy.scrollTo(scrollTarget, anchor: .center)
                         }
                     }
                 }
-                .frame(maxWidth: .infinity, alignment: .trailing)
             }
-            .padding(5)
-            .navigationTitle("\(friend.firstName) \(friend.lastName)")
-            Spacer()
             HStack {
                 TextField("send a message", text: $messageString)
                     .textFieldStyle(.roundedBorder)
@@ -50,7 +66,6 @@ struct ChatView: View {
                     .focused($messageTextFieldIsFocused)
 
                 Button("Send") {
-                    messageTextFieldIsFocused = false
                     if messageString == "" { return }
                     Task {
                         signalR.connection.invoke(method: "SendMessage", groupId, messageString, resultType: Message.self) { result, error in
@@ -62,9 +77,11 @@ struct ChatView: View {
                                 let groupId = result!.groupId
                                 if dataState.messages[groupId] != nil {
                                     dataState.messages[groupId]?.append(result!)
+                                    scrollTarget = result!.messageId
                                     return
                                 }
                                 dataState.messages[groupId] = [result!]
+                                scrollTarget = result!.messageId
                             }
                         }
                     }
@@ -74,8 +91,14 @@ struct ChatView: View {
             }
             .padding(.bottom)
         }
-        .contentShape(Rectangle())
-        .gesture(drag)
+//        .toolbar {
+//            ToolbarItemGroup(placement: .keyboard) {
+//                TextField("send a message", text: $messageString)
+//                    .textFieldStyle(.roundedBorder)
+//                    .padding(.leading)
+//                    .focused($messageTextFieldIsFocused)
+//            }
+//        }
         .task {
             // Add some data for previews
             if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
@@ -86,6 +109,7 @@ struct ChatView: View {
             let messages = await GetMessages(GroupId: groupId)
             if messages.count > 0 {
                 dataState.messages[groupId] = messages
+                scrollTarget = messages.last?.messageId
             }
         }
     }

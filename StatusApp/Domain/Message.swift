@@ -8,7 +8,7 @@
 import Foundation
 
 struct Message: Codable {
-    var messageId: Int;
+    var messageId: Int = 0;
     var groupId: UUID;
     var authorUserName: String;
     var data: String;
