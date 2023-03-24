@@ -8,7 +8,7 @@
 import Foundation
 
 func CheckAuth() async -> Bool {
-    guard var urlComponents = URLComponents(string: "\(connectionString)/checkAuth")
+    guard var urlComponents = URLComponents(string: "\(connectionString)/checkauth")
     else {
         print("Invalid URL")
         return false

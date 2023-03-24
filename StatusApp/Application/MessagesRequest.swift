@@ -9,7 +9,7 @@ import Foundation
 
 func GetMessages(GroupId: UUID) async -> [Message] {
     var messages: [Message] = []
-    guard var urlComponents = URLComponents(string: "\(connectionString)/getMessages")
+    guard var urlComponents = URLComponents(string: "\(connectionString)/getmessages")
     else {
         print("Invalid URL")
         return []

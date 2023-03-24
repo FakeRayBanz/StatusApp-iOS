@@ -9,7 +9,7 @@ import Foundation
 
 func GetUser() async -> User {
     var user = User()
-    guard var urlComponents = URLComponents(string: "\(connectionString)/getUser")
+    guard var urlComponents = URLComponents(string: "\(connectionString)/getuser")
     else {
         print("Invalid URL")
         return User()

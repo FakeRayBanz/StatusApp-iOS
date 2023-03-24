@@ -8,7 +8,7 @@
 import Foundation
 
 func SignOut() async -> Bool {
-    guard var urlComponents = URLComponents(string: "\(connectionString)/signOut")
+    guard var urlComponents = URLComponents(string: "\(connectionString)/signout")
     else {
         print("Invalid URL")
         return false
