@@ -53,7 +53,8 @@ struct StatusView: View {
                         .frame(width: 50, height: 50)
                         .onTapGesture {
                             Task {
-                                let success = await UpdateUser(online: true)
+                                dataState.currentUser.online = true
+                                let success = await UpdateUser(user: dataState.currentUser)
                                 if success == true {
                                     dataState.currentUser = await GetUser()
                                 }
@@ -77,7 +78,8 @@ struct StatusView: View {
                         .frame(width: 50, height: 50)
                         .onTapGesture {
                             Task {
-                                let success = await UpdateUser(online: false)
+                                dataState.currentUser.online = false
+                                let success = await UpdateUser(user: dataState.currentUser)
                                 if success == true {
                                     dataState.currentUser = await GetUser()
                                 }
@@ -102,7 +104,8 @@ struct StatusView: View {
                 .padding(5)
                 .onSubmit {
                     Task {
-                        let success = await UpdateUser(status: statusString)
+                        dataState.currentUser.status = statusString
+                        let success = await UpdateUser(user: dataState.currentUser)
                         if success == true {
                             dataState.currentUser = await GetUser()
                         }

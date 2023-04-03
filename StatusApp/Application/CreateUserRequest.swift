@@ -7,19 +7,14 @@
 
 import Foundation
 
+// TODO: pass in a CreateUserDto
 func CreateUser(userName: String, password: String, email: String, firstName: String, lastName: String) async -> Bool {
     guard var urlComponents = URLComponents(string: "\(connectionString)/createuser")
     else {
         print("Invalid URL")
         return false
     }
-    urlComponents.queryItems = [
-        URLQueryItem(name: "userName", value: userName),
-        URLQueryItem(name: "password", value: password),
-        URLQueryItem(name: "email", value: email),
-        URLQueryItem(name: "firstName", value: firstName),
-        URLQueryItem(name: "lastName", value: lastName)
-    ]
+    urlComponents.queryItems = []
 
     guard let url = urlComponents.url
     else {
@@ -28,8 +23,19 @@ func CreateUser(userName: String, password: String, email: String, firstName: St
     }
     var request = URLRequest(url: url)
     request.httpMethod = "PUT"
-
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    let encoder = JSONEncoder()
     do {
+        
+        var dto = CreateUserDto()
+        dto.userName = userName
+        dto.firstName = firstName
+        dto.lastName = lastName
+        dto.email = email
+        dto.password = password
+        
+        let jsonData = try encoder.encode(dto)
+        request.httpBody = jsonData
         let (_, info) = try await URLSession.shared.data(for: request)
         if let httpResponse = info as? HTTPURLResponse {
             if httpResponse.statusCode == 200 {

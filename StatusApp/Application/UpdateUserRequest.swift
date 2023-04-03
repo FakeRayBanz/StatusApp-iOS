@@ -7,28 +7,13 @@
 
 import Foundation
 
-func UpdateUser(firstName: String? = nil, lastName: String? = nil, email: String? = nil, status: String? = nil, online: Bool? = nil) async -> Bool {
+func UpdateUser(user: User) async -> Bool {
     guard var urlComponents = URLComponents(string: "\(connectionString)/updateuser")
     else {
         print("Invalid URL")
         return false
     }
     var queryItems: [URLQueryItem] = []
-    if let firstName = firstName {
-        queryItems.append(URLQueryItem(name: "firstName", value: String(firstName)))
-    }
-    if let lastName = lastName {
-        queryItems.append(URLQueryItem(name: "lastName", value: String(lastName)))
-    }
-    if let email = email {
-        queryItems.append(URLQueryItem(name: "email", value: String(email)))
-    }
-    if let status = status {
-        queryItems.append(URLQueryItem(name: "status", value: String(status)))
-    }
-    if let online = online {
-        queryItems.append(URLQueryItem(name: "online", value: String(online)))
-    }
     urlComponents.queryItems = queryItems
 
     guard let url = urlComponents.url
@@ -38,8 +23,12 @@ func UpdateUser(firstName: String? = nil, lastName: String? = nil, email: String
     }
     var request = URLRequest(url: url)
     request.httpMethod = "PATCH"
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    let encoder = JSONEncoder()
 
     do {
+        let jsonData = try encoder.encode(user)
+        request.httpBody = jsonData
         let (_, info) = try await URLSession.shared.data(for: request)
         if let httpResponse = info as? HTTPURLResponse {
             if httpResponse.statusCode == 200 {
