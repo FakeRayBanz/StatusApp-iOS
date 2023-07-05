@@ -13,5 +13,5 @@ struct Message: Codable {
     var authorUserName: String;
     var data: String;
     var created: String;
-    var lastUpdated: String;
+    var lastUpdated: String?;
 }
