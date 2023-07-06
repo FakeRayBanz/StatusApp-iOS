@@ -15,6 +15,9 @@ struct ChatView: View {
     @State var messageString = ""
     @State private var scrollTarget: Int?
     @FocusState var messageTextFieldIsFocused: Bool
+
+    let _messagesService = MessagingService();
+
     var body: some View {
         VStack {
             ScrollViewReader { proxy in
@@ -106,7 +109,7 @@ struct ChatView: View {
                 dataState.messages[groupId] = [Message(messageId: 26, groupId: UUID(), authorUserName: "BigMaurice", data: "Test", created: "2023-01-21T12:45:54.994558Z", lastUpdated: "0001-01-01T00:00:00"), Message(messageId: 27, groupId: UUID(), authorUserName: "Katie11", data: "Test2dhjkflajkla;fjioal;jfieaofjdajdskfljsdkfljkflsdjafkldaj;fkldaj;fieoajfdksla;fjdaklf;djak", created: "2023-01-21T12:45:54.994558Z", lastUpdated: "0001-01-01T00:00:00")]
             }
             // load all messages for this chat from the server
-            let messages = await GetMessages(GroupId: groupId)
+            let messages = await _messagesService.GetMessages(GroupId: groupId)
             if messages.count > 0 {
                 dataState.messages[groupId] = messages
                 scrollTarget = messages.last?.messageId
