@@ -1,20 +1,20 @@
 //
-//  CreateUserRequest.swift
+//  UpdateUserRequest.swift
 //  StatusApp
 //
-//  Created by Matthew Parker on 30/11/2022.
+//  Created by Matthew Parker on 22/11/2022.
 //
 
 import Foundation
 
-// TODO: pass in a CreateUserDto
-func CreateUser(userName: String, password: String, email: String, firstName: String, lastName: String) async -> Bool {
-    guard var urlComponents = URLComponents(string: "\(connectionString)/createuser")
+func UpdateUser(user: User) async -> Bool {
+    guard var urlComponents = URLComponents(string: "\(connectionString)/updateuser")
     else {
         print("Invalid URL")
         return false
     }
-    urlComponents.queryItems = []
+    let queryItems: [URLQueryItem] = []
+    urlComponents.queryItems = queryItems
 
     guard let url = urlComponents.url
     else {
@@ -22,26 +22,18 @@ func CreateUser(userName: String, password: String, email: String, firstName: St
         return false
     }
     var request = URLRequest(url: url)
-    request.httpMethod = "PUT"
+    request.httpMethod = "PATCH"
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     let encoder = JSONEncoder()
+
     do {
-        
-        var dto = CreateUserDto()
-        dto.userName = userName
-        dto.firstName = firstName
-        dto.lastName = lastName
-        dto.email = email
-        dto.password = password
-        
-        let jsonData = try encoder.encode(dto)
+        let jsonData = try encoder.encode(user)
         request.httpBody = jsonData
         let (_, info) = try await URLSession.shared.data(for: request)
         if let httpResponse = info as? HTTPURLResponse {
             if httpResponse.statusCode == 200 {
                 // if let decodedResponse = try? JSONDecoder().decode(Friendship.self, from: data) {
                 // friendship = decodedResponse
-                print("Created successfully")
                 return true
 
             } else {
