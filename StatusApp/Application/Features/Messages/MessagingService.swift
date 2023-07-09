@@ -11,7 +11,7 @@ class MessagingService {
     let _messagesClient: IMessagingClient;
     
     init() {
-        _messagesClient = serviceContainer.Resolve(interface: IMessagingClient.self) as! any IMessagingClient;
+        _messagesClient = MessagingClient();
     }
     
     

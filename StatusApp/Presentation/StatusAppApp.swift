@@ -9,14 +9,10 @@ import SwiftUI
 
 @main
 struct StatusAppApp: App {
-    init() {
-        DependencyInjection();
-    }
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(dataState)
-
         }
     }
 }
