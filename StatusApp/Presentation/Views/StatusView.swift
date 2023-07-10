@@ -11,6 +11,8 @@ struct StatusView: View {
     @EnvironmentObject var dataState: DataState
     @State var statusString = ""
     var statusRed = Color(UIColor(red: 0.96, green: 0, blue: 0, alpha: 1))
+
+    let _userService = UserService();
     var body: some View {
         VStack {
             Text("My Status")
@@ -54,9 +56,9 @@ struct StatusView: View {
                         .onTapGesture {
                             Task {
                                 dataState.currentUser.online = true
-                                let success = await UpdateUser(user: dataState.currentUser)
+                                let success = await _userService.UpdateUser(user: dataState.currentUser)
                                 if success == true {
-                                    dataState.currentUser = await GetUser()
+                                    dataState.currentUser = await _userService.GetUser()
                                 }
                             }
                         }
@@ -79,9 +81,9 @@ struct StatusView: View {
                         .onTapGesture {
                             Task {
                                 dataState.currentUser.online = false
-                                let success = await UpdateUser(user: dataState.currentUser)
+                                let success = await _userService.UpdateUser(user: dataState.currentUser)
                                 if success == true {
-                                    dataState.currentUser = await GetUser()
+                                    dataState.currentUser = await _userService.GetUser()
                                 }
                             }
                         }
@@ -105,9 +107,9 @@ struct StatusView: View {
                 .onSubmit {
                     Task {
                         dataState.currentUser.status = statusString
-                        let success = await UpdateUser(user: dataState.currentUser)
+                        let success = await _userService.UpdateUser(user: dataState.currentUser)
                         if success == true {
-                            dataState.currentUser = await GetUser()
+                            dataState.currentUser = await _userService.GetUser()
                         }
                     }
                 }

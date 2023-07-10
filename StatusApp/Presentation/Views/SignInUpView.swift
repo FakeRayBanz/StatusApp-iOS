@@ -15,6 +15,7 @@ struct SignInUpView: View {
 
     let _authService = AuthService();
     let _friendsService = FriendsService();
+    let _userService = UserService();
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
@@ -54,7 +55,7 @@ struct SignInUpView: View {
                                 signalR.connection.start()
                                 dataState.currentUserName = signInUsername
                                 UserDefaults.standard.set(dataState.currentUserName, forKey: "userName")
-                                dataState.currentUser = await GetUser()
+                                dataState.currentUser = await _userService.GetUser()
                                 dataState.friendsList = await _friendsService.GetFriendsList()
                                 dataState.friendships = await _friendsService.GetFriendships()
                                 // TODO: Add loading state

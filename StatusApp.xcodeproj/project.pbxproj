@@ -13,6 +13,9 @@
 		5519E4932A5C4735009D6812 /* FriendsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5519E4922A5C4735009D6812 /* FriendsClient.swift */; };
 		5519E4952A5C474F009D6812 /* IFriendsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5519E4942A5C474F009D6812 /* IFriendsClient.swift */; };
 		5519E4972A5C47CE009D6812 /* FriendsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5519E4962A5C47CE009D6812 /* FriendsService.swift */; };
+		5519E4992A5C4B84009D6812 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5519E4982A5C4B84009D6812 /* UserService.swift */; };
+		5519E49B2A5C4BA3009D6812 /* IUserClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5519E49A2A5C4BA3009D6812 /* IUserClient.swift */; };
+		5519E49D2A5C4C11009D6812 /* UserClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5519E49C2A5C4C11009D6812 /* UserClient.swift */; };
 		55490B9129291A35009E8363 /* FriendsStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55490B9029291A35009E8363 /* FriendsStatusView.swift */; };
 		55559B5B2924FB9200B58E1E /* StatusAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55559B5A2924FB9200B58E1E /* StatusAppApp.swift */; };
 		55559B5D2924FB9200B58E1E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55559B5C2924FB9200B58E1E /* ContentView.swift */; };
@@ -22,16 +25,13 @@
 		555B459A2A56DF25004696E5 /* MessagingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555B45992A56DF25004696E5 /* MessagingClient.swift */; };
 		555B5D72292993E5006F2929 /* AddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555B5D71292993E5006F2929 /* AddFriendView.swift */; };
 		555B5D76292997AF006F2929 /* Friendship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555B5D75292997AF006F2929 /* Friendship.swift */; };
-		555F710F292515DA0029A9F5 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F710E292515DA0029A9F5 /* UserRequest.swift */; };
 		556B96DD29263B1E00530946 /* DataState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B96DC29263B1E00530946 /* DataState.swift */; };
 		556B96DF29265A4000530946 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B96DE29265A4000530946 /* ProfileView.swift */; };
-		55814E52292CDFC000A3B1AE /* UpdateUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55814E51292CDFC000A3B1AE /* UpdateUserRequest.swift */; };
 		5597543A29DAFE23001A4E5A /* CreateUserDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5597543929DAFE23001A4E5A /* CreateUserDto.swift */; };
 		55A24029292E32C900F4956F /* SignalRClient in Frameworks */ = {isa = PBXBuildFile; productRef = 55A24028292E32C900F4956F /* SignalRClient */; };
 		55A2402B292E32E400F4956F /* SignalRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A2402A292E32E400F4956F /* SignalRService.swift */; };
 		55A553AB29250C9C000704FB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A553AA29250C9C000704FB /* User.swift */; };
 		55A553B029250F09000704FB /* MessagingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A553AF29250F09000704FB /* MessagingService.swift */; };
-		55A853CE29376417007F2778 /* CreateUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A853CD29376417007F2778 /* CreateUserRequest.swift */; };
 		55BF70AD2A56E6FA00D259CD /* IMessagingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BF70AC2A56E6FA00D259CD /* IMessagingClient.swift */; };
 		55DDEF122927A7B900D1E211 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55DDEF112927A7B900D1E211 /* Config.plist */; };
 		55DDEF162927C03C00D1E211 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DDEF152927C03C00D1E211 /* ChatView.swift */; };
@@ -48,6 +48,9 @@
 		5519E4922A5C4735009D6812 /* FriendsClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsClient.swift; sourceTree = "<group>"; };
 		5519E4942A5C474F009D6812 /* IFriendsClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IFriendsClient.swift; sourceTree = "<group>"; };
 		5519E4962A5C47CE009D6812 /* FriendsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsService.swift; sourceTree = "<group>"; };
+		5519E4982A5C4B84009D6812 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		5519E49A2A5C4BA3009D6812 /* IUserClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IUserClient.swift; sourceTree = "<group>"; };
+		5519E49C2A5C4C11009D6812 /* UserClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserClient.swift; sourceTree = "<group>"; };
 		55490B9029291A35009E8363 /* FriendsStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsStatusView.swift; sourceTree = "<group>"; };
 		55559B572924FB9200B58E1E /* StatusApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StatusApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55559B5A2924FB9200B58E1E /* StatusAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusAppApp.swift; sourceTree = "<group>"; };
@@ -58,15 +61,12 @@
 		555B45992A56DF25004696E5 /* MessagingClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingClient.swift; sourceTree = "<group>"; };
 		555B5D71292993E5006F2929 /* AddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendView.swift; sourceTree = "<group>"; };
 		555B5D75292997AF006F2929 /* Friendship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friendship.swift; sourceTree = "<group>"; };
-		555F710E292515DA0029A9F5 /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		556B96DC29263B1E00530946 /* DataState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataState.swift; sourceTree = "<group>"; };
 		556B96DE29265A4000530946 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		55814E51292CDFC000A3B1AE /* UpdateUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserRequest.swift; sourceTree = "<group>"; };
 		5597543929DAFE23001A4E5A /* CreateUserDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserDto.swift; sourceTree = "<group>"; };
 		55A2402A292E32E400F4956F /* SignalRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalRService.swift; sourceTree = "<group>"; };
 		55A553AA29250C9C000704FB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		55A553AF29250F09000704FB /* MessagingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingService.swift; sourceTree = "<group>"; };
-		55A853CD29376417007F2778 /* CreateUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserRequest.swift; sourceTree = "<group>"; };
 		55BF70AC2A56E6FA00D259CD /* IMessagingClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMessagingClient.swift; sourceTree = "<group>"; };
 		55DDEF112927A7B900D1E211 /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		55DDEF152927C03C00D1E211 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -180,9 +180,7 @@
 		555B45932A56DC2E004696E5 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				55A853CD29376417007F2778 /* CreateUserRequest.swift */,
-				55814E51292CDFC000A3B1AE /* UpdateUserRequest.swift */,
-				555F710E292515DA0029A9F5 /* UserRequest.swift */,
+				5519E4982A5C4B84009D6812 /* UserService.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -216,6 +214,7 @@
 			children = (
 				555B45992A56DF25004696E5 /* MessagingClient.swift */,
 				5519E48C2A5C434E009D6812 /* AuthClient.swift */,
+				5519E49C2A5C4C11009D6812 /* UserClient.swift */,
 				5519E4922A5C4735009D6812 /* FriendsClient.swift */,
 			);
 			path = HttpClients;
@@ -235,6 +234,7 @@
 				55BF70AC2A56E6FA00D259CD /* IMessagingClient.swift */,
 				5519E48E2A5C438C009D6812 /* IAuthClient.swift */,
 				5519E4942A5C474F009D6812 /* IFriendsClient.swift */,
+				5519E49A2A5C4BA3009D6812 /* IUserClient.swift */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -332,24 +332,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				556B96DF29265A4000530946 /* ProfileView.swift in Sources */,
-				55A853CE29376417007F2778 /* CreateUserRequest.swift in Sources */,
 				5519E4952A5C474F009D6812 /* IFriendsClient.swift in Sources */,
-				55814E52292CDFC000A3B1AE /* UpdateUserRequest.swift in Sources */,
 				555B459A2A56DF25004696E5 /* MessagingClient.swift in Sources */,
 				55A553AB29250C9C000704FB /* User.swift in Sources */,
 				55E6AA3A293603C000EB2B64 /* SignUpView.swift in Sources */,
 				555B5D72292993E5006F2929 /* AddFriendView.swift in Sources */,
 				55DDEF1C2927CB4800D1E211 /* StatusView.swift in Sources */,
 				5519E4972A5C47CE009D6812 /* FriendsService.swift in Sources */,
+				5519E49D2A5C4C11009D6812 /* UserClient.swift in Sources */,
 				5519E4932A5C4735009D6812 /* FriendsClient.swift in Sources */,
 				55DDEF162927C03C00D1E211 /* ChatView.swift in Sources */,
 				55559B6D2924FDC100B58E1E /* Message.swift in Sources */,
 				5519E48F2A5C438C009D6812 /* IAuthClient.swift in Sources */,
 				55490B9129291A35009E8363 /* FriendsStatusView.swift in Sources */,
 				556B96DD29263B1E00530946 /* DataState.swift in Sources */,
+				5519E4992A5C4B84009D6812 /* UserService.swift in Sources */,
 				55E6AA382935F53000EB2B64 /* SignInUpView.swift in Sources */,
 				55A2402B292E32E400F4956F /* SignalRService.swift in Sources */,
-				555F710F292515DA0029A9F5 /* UserRequest.swift in Sources */,
 				55BF70AD2A56E6FA00D259CD /* IMessagingClient.swift in Sources */,
 				55E61A1A293B75E6002A61BD /* SignUpPasswordView.swift in Sources */,
 				5597543A29DAFE23001A4E5A /* CreateUserDto.swift in Sources */,
@@ -358,6 +357,7 @@
 				55559B5D2924FB9200B58E1E /* ContentView.swift in Sources */,
 				55A553B029250F09000704FB /* MessagingService.swift in Sources */,
 				55559B5B2924FB9200B58E1E /* StatusAppApp.swift in Sources */,
+				5519E49B2A5C4BA3009D6812 /* IUserClient.swift in Sources */,
 				555B5D76292997AF006F2929 /* Friendship.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

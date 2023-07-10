@@ -18,6 +18,7 @@ struct SignUpPasswordView: View {
     @State var signUpPasswordConfirm: String = ""
 
     let _friendsService = FriendsService();
+    let _userService = UserService();
     var body: some View {
         VStack {
             VStack {
@@ -46,13 +47,13 @@ struct SignUpPasswordView: View {
                 .padding(.bottom, 25)
             Button("Sign up") {
                 Task {
-                    let success: Bool = await CreateUser(userName: signUpUsername, password: signUpPassword, email: signUpEmail, firstName: signUpFirstName, lastName: signUpLastName)
+                    let success: Bool = await _userService.CreateUser(userName: signUpUsername, password: signUpPassword, email: signUpEmail, firstName: signUpFirstName, lastName: signUpLastName)
                     print(success)
                     if success == true {
                         signalR.connection.start()
                         dataState.currentUserName = signUpUsername
                         UserDefaults.standard.set(dataState.currentUserName, forKey: "userName")
-                        dataState.currentUser = await GetUser()
+                        dataState.currentUser = await _userService.GetUser()
                         dataState.friendsList = await _friendsService.GetFriendsList()
                         // TODO: Add loading state
                         showOnboardingView = false
