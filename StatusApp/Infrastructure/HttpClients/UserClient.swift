@@ -3,19 +3,12 @@ import Foundation
 
 class UserClient: IUserClient {
     func CreateUser(userName: String, password: String, email: String, firstName: String, lastName: String) async -> Bool {
-        guard var urlComponents = URLComponents(string: "\(apiBaseUrl)/createuser")
-        else {
-            print("Invalid URL")
-            return false
-        }
-        urlComponents.queryItems = []
+        var urlComponents = URLComponents(string: "\(apiBaseUrl)/createuser")!;
 
-        guard let url = urlComponents.url
-        else {
-            print("Invalid URL")
-            return false
-        }
-        var request = URLRequest(url: url)
+        urlComponents.queryItems = [];
+
+        let url = urlComponents.url!;
+        var request = URLRequest(url: url);
         request.httpMethod = "PUT"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         let encoder = JSONEncoder()
@@ -49,20 +42,13 @@ class UserClient: IUserClient {
     }
 
     func UpdateUser(user: User) async -> Bool {
-        guard var urlComponents = URLComponents(string: "\(apiBaseUrl)/updateuser")
-        else {
-            print("Invalid URL")
-            return false
-        }
-        let queryItems: [URLQueryItem] = []
-        urlComponents.queryItems = queryItems
+        var urlComponents = URLComponents(string: "\(apiBaseUrl)/updateuser")!;
 
-        guard let url = urlComponents.url
-        else {
-            print("Invalid URL")
-            return false
-        }
-        var request = URLRequest(url: url)
+        let queryItems: [URLQueryItem] = [];
+        urlComponents.queryItems = queryItems;
+
+        let url = urlComponents.url!;
+        var request = URLRequest(url: url);
         request.httpMethod = "PATCH"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         let encoder = JSONEncoder()
@@ -90,18 +76,10 @@ class UserClient: IUserClient {
 
     func GetUser() async -> User {
         var user = User()
-        guard var urlComponents = URLComponents(string: "\(apiBaseUrl)/getuser")
-        else {
-            print("Invalid URL")
-            return User()
-        }
-        urlComponents.queryItems = []
+        var urlComponents = URLComponents(string: "\(apiBaseUrl)/getuser")!;
+        urlComponents.queryItems = [];
 
-        guard let url = urlComponents.url
-        else {
-            print("Invalid URL")
-            return User()
-        }
+        let url = urlComponents.url!;
 
         do {
             let (data, _) = try await URLSession.shared.data(from: url)

@@ -4,18 +4,11 @@ import Foundation
 class FriendsClient: IFriendsClient {
     func GetFriendsList() async -> [User] {
         var friendsList: [User] = []
-        guard var urlComponents = URLComponents(string: "\(apiBaseUrl)/getfriends")
-        else {
-            print("Invalid URL")
-            return friendsList
-        }
-        urlComponents.queryItems = []
+        var urlComponents = URLComponents(string: "\(apiBaseUrl)/getfriends")!;
 
-        guard let url = urlComponents.url
-        else {
-            print("Invalid URL")
-            return friendsList
-        }
+        urlComponents.queryItems = [];
+
+        let url = urlComponents.url!;
 
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
@@ -29,18 +22,10 @@ class FriendsClient: IFriendsClient {
     }
 
     func SendFriendRequest(friendUserName: String) async -> Bool {
-        guard var urlComponents = URLComponents(string: "\(apiBaseUrl)/sendfriendrequest")
-        else {
-            print("Invalid URL")
-            return false
-        }
-        urlComponents.queryItems = [URLQueryItem(name: "friendUserName", value: friendUserName)]
+        var urlComponents = URLComponents(string: "\(apiBaseUrl)/sendfriendrequest")!;
+        urlComponents.queryItems = [URLQueryItem(name: "friendUserName", value: friendUserName)];
 
-        guard let url = urlComponents.url
-        else {
-            print("Invalid URL")
-            return false
-        }
+        let url = urlComponents.url!;
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
 
@@ -66,18 +51,12 @@ class FriendsClient: IFriendsClient {
 
     func GetFriendships() async -> [Friendship] {
         var friendships: [Friendship] = []
-        guard var urlComponents = URLComponents(string: "\(apiBaseUrl)/getfriendships")
-        else {
-            print("Invalid URL")
-            return friendships
-        }
-        urlComponents.queryItems = []
+        var urlComponents = URLComponents(string: "\(apiBaseUrl)/getfriendships")!;
 
-        guard let url = urlComponents.url
-        else {
-            print("Invalid URL")
-            return friendships
-        }
+        urlComponents.queryItems = [];
+
+        let url = urlComponents.url!;
+
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
             if let decodedResponse = try? JSONDecoder().decode([Friendship].self, from: data) {
@@ -90,19 +69,12 @@ class FriendsClient: IFriendsClient {
     }
 
     func ActionFriendRequest(friendUserName: String, accepted: Bool) async -> Bool {
-        guard var urlComponents = URLComponents(string: "\(apiBaseUrl)/actionfriendrequest")
-        else {
-            print("Invalid URL")
-            return false
-        }
+        var urlComponents = URLComponents(string: "\(apiBaseUrl)/actionfriendrequest")!;
         urlComponents.queryItems = [URLQueryItem(name: "friendUserName", value: friendUserName),
-                                    URLQueryItem(name: "accepted", value: String(accepted))]
+                                    URLQueryItem(name: "accepted", value: String(accepted))];
 
-        guard let url = urlComponents.url
-        else {
-            print("Invalid URL")
-            return false
-        }
+        let url = urlComponents.url!;
+
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
 
@@ -127,18 +99,12 @@ class FriendsClient: IFriendsClient {
     }
 
     func RemoveFriend(friendUserName: String) async -> Bool {
-        guard var urlComponents = URLComponents(string: "\(apiBaseUrl)/removefriend")
-        else {
-            print("Invalid URL")
-            return false
-        }
-        urlComponents.queryItems = [URLQueryItem(name: "friendUserName", value: friendUserName)]
+        var urlComponents = URLComponents(string: "\(apiBaseUrl)/removefriend")!;
 
-        guard let url = urlComponents.url
-        else {
-            print("Invalid URL")
-            return false
-        }
+        urlComponents.queryItems = [URLQueryItem(name: "friendUserName", value: friendUserName)];
+
+        let url = urlComponents.url!;
+
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
 

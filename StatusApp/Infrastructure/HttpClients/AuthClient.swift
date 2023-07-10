@@ -3,20 +3,14 @@ import Foundation
 
 class AuthClient: IAuthClient {
     func CheckAuth() async -> Bool {
-        guard var urlComponents = URLComponents(string: "\(apiBaseUrl)/checkauth")
-        else {
-            print("Invalid URL")
-            return false
-        }
-        urlComponents.queryItems = []
+        var urlComponents = URLComponents(string: "\(apiBaseUrl)/checkauth")!;
 
-        guard let url = urlComponents.url
-        else {
-            print("Invalid URL")
-            return false
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
+        urlComponents.queryItems = [];
+
+        let url = urlComponents.url!;
+
+        var request = URLRequest(url: url);
+        request.httpMethod = "GET";
 
         do {
             let (_, info) = try await URLSession.shared.data(for: request)
