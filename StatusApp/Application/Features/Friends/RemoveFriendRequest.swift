@@ -8,7 +8,7 @@
 import Foundation
 
 func RemoveFriend(friendUserName: String) async -> Bool {
-    guard var urlComponents = URLComponents(string: "\(connectionString)/removefriend")
+    guard var urlComponents = URLComponents(string: "\(apiBaseUrl)/removefriend")
     else {
         print("Invalid URL")
         return false

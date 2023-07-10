@@ -11,6 +11,8 @@ struct ProfileView: View {
     @EnvironmentObject var dataState: DataState
     @Binding var showProfileView: Bool
     @Binding var showOnboardingView: Bool
+
+    var _authService = AuthService()
     var body: some View {
         VStack {
             Text("My Account")
@@ -50,7 +52,7 @@ struct ProfileView: View {
             Spacer()
             Button("Sign Out") {
                 Task {
-                    await SignOut()
+                    await _authService.SignOut()
                 }
                 signalR.connection.stop()
                 dataState.currentUserName = ""

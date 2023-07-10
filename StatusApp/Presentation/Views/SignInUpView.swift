@@ -12,6 +12,7 @@ struct SignInUpView: View {
     @State var signInUsername: String = ""
     @State var signInPassword: String = ""
     @Binding var showOnboardingView: Bool
+    var _authService = AuthService();
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
@@ -45,7 +46,7 @@ struct SignInUpView: View {
                         .padding(.bottom, 20)
                     Button("Sign in") {
                         Task {
-                            let success = await SignInRequest(userName: signInUsername, password: signInPassword)
+                            let success = await _authService.SignInRequest(userName: signInUsername, password: signInPassword)
                             print(success)
                             if success == true {
                                 signalR.connection.start()

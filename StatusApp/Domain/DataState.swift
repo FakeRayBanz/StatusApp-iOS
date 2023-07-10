@@ -10,7 +10,7 @@ import SwiftUI
 
 private let path: String = Bundle.main.path(forResource: "Config", ofType: "plist")!
 private let config: NSDictionary = NSDictionary(contentsOfFile: path)!
-let connectionString = config.object(forKey: "connectionString") as! String
+let apiBaseUrl = config.object(forKey: "connectionString") as! String
 
 var dataState = DataState()
 let signalR: SignalRService = SignalRService()

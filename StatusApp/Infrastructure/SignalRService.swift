@@ -26,7 +26,7 @@ public class SignalRService {
     var signalRConnectionDelegate: HubConnectionDelegate? = SignalRConnectionDelegate()
     var connection: HubConnection
     public init() {
-        let url = URL(string: "\(connectionString)/statushub")!
+        let url = URL(string: "\(apiBaseUrl)/statushub")!
         connection = HubConnectionBuilder(url: url).withHubConnectionDelegate(delegate: signalRConnectionDelegate!).withLogging(minLogLevel: .error).build()
         connection.on(method: "ReceiveBroadcast", callback: { (user: String, message: String) in
             self.handleBroadcast(message, from: user)

@@ -15,6 +15,8 @@ struct ContentView: View {
     @State var showStatusView: Bool = false
     @State var showAddFriendView: Bool = false
     @State var showOnboardingView: Bool = false
+
+    var _authService = AuthService();
     var statusRed = Color(UIColor(red: 0.96, green: 0, blue: 0, alpha: 1))
     var body: some View {
         NavigationStack {
@@ -84,7 +86,7 @@ struct ContentView: View {
                 SignInUpView(showOnboardingView: $showOnboardingView)
             }
             .task {
-                if await CheckAuth() == true {
+                if await _authService.CheckAuth() == true {
                     print("CurrentUserName: " + dataState.currentUserName)
                     dataState.currentUser = await GetUser()
                     dataState.friendsList = await GetFriendsList()

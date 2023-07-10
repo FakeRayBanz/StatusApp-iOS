@@ -9,7 +9,7 @@ import Foundation
 
 // TODO: pass in a CreateUserDto
 func CreateUser(userName: String, password: String, email: String, firstName: String, lastName: String) async -> Bool {
-    guard var urlComponents = URLComponents(string: "\(connectionString)/createuser")
+    guard var urlComponents = URLComponents(string: "\(apiBaseUrl)/createuser")
     else {
         print("Invalid URL")
         return false

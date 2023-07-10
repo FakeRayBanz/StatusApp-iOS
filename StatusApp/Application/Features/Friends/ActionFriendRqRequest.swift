@@ -8,7 +8,7 @@
 import Foundation
 
 func ActionFriendRequest(friendUserName: String, accepted: Bool) async -> Bool {
-    guard var urlComponents = URLComponents(string: "\(connectionString)/actionfriendrequest")
+    guard var urlComponents = URLComponents(string: "\(apiBaseUrl)/actionfriendrequest")
     else {
         print("Invalid URL")
         return false

@@ -9,7 +9,7 @@ import Foundation
 
 func GetFriendsList() async -> [User] {
     var friendsList: [User] = []
-    guard var urlComponents = URLComponents(string: "\(connectionString)/getfriends")
+    guard var urlComponents = URLComponents(string: "\(apiBaseUrl)/getfriends")
     else {
         print("Invalid URL")
         return friendsList

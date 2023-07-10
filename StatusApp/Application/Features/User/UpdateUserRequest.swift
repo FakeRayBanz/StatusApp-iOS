@@ -8,7 +8,7 @@
 import Foundation
 
 func UpdateUser(user: User) async -> Bool {
-    guard var urlComponents = URLComponents(string: "\(connectionString)/updateuser")
+    guard var urlComponents = URLComponents(string: "\(apiBaseUrl)/updateuser")
     else {
         print("Invalid URL")
         return false

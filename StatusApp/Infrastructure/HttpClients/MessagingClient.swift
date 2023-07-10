@@ -5,7 +5,7 @@ import Foundation
 class MessagingClient : IMessagingClient  {
     func GetMessagesAsync(GroupId: UUID) async -> [Message] {
         var messages: [Message] = [];
-        var urlComponents = URLComponents(string: "\(connectionString)/getmessages")!;
+        var urlComponents = URLComponents(string: "\(apiBaseUrl)/getmessages")!;
         urlComponents.queryItems = [URLQueryItem(name: "groupId", value: GroupId.uuidString)];
         let url = urlComponents.url!;
         
