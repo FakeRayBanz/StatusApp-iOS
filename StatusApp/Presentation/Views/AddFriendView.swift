@@ -11,6 +11,9 @@ struct AddFriendView: View {
     @EnvironmentObject var dataState: DataState
     @State var searchString: String = ""
     @State var errorString: String = ""
+
+    let _authService = AuthService();
+    let _friendsService = FriendsService();
     var body: some View {
         VStack(spacing: 0) {
             Text("Add Friends")
@@ -23,12 +26,12 @@ struct AddFriendView: View {
                 .onSubmit {
                     print("submitted")
                     Task {
-                        let requestSucceeded = await SendFriendRequest(friendUserName: searchString)
+                        let requestSucceeded = await _friendsService.SendFriendRequest(friendUserName: searchString)
                         if requestSucceeded == true {
                             errorString = "Request successfully sent"
                             // Task get request list
                             Task {
-                                dataState.friendships = await GetFriendships()
+                                dataState.friendships = await _friendsService.GetFriendships()
                             }
                         } else {
                             errorString = "That username does not exist"
@@ -45,11 +48,11 @@ struct AddFriendView: View {
                     if friend.areFriends == true, friend.accepted == true {
                         Button("Remove Friend") {
                             Task {
-                                let success = await RemoveFriend(friendUserName: friend.friendUserName)
+                                let success = await _friendsService.RemoveFriend(friendUserName: friend.friendUserName)
                                 if success == true {
                                     Task {
-                                        dataState.friendsList = await GetFriendsList()
-                                        dataState.friendships = await GetFriendships()
+                                        dataState.friendsList = await _friendsService.GetFriendsList()
+                                        dataState.friendships = await _friendsService.GetFriendships()
                                     }
                                 }
                             }
@@ -58,10 +61,10 @@ struct AddFriendView: View {
                     if friend.areFriends == false, friend.accepted == true {
                         Button("Cancel Request") {
                             Task {
-                                let success = await ActionFriendRequest(friendUserName: friend.friendUserName, accepted: false)
+                                let success = await _friendsService.ActionFriendRequest(friendUserName: friend.friendUserName, accepted: false)
                                 if success == true {
                                     Task {
-                                        dataState.friendships = await GetFriendships()
+                                        dataState.friendships = await _friendsService.GetFriendships()
                                     }
                                 }
                             }
@@ -70,11 +73,11 @@ struct AddFriendView: View {
                     if friend.areFriends == false, friend.accepted == false {
                         Button("Accept Request") {
                             Task {
-                                let success = await ActionFriendRequest(friendUserName: friend.friendUserName, accepted: true)
+                                let success = await _friendsService.ActionFriendRequest(friendUserName: friend.friendUserName, accepted: true)
                                 if success == true {
                                     Task {
-                                        dataState.friendships = await GetFriendships()
-                                        dataState.friendsList = await GetFriendsList()
+                                        dataState.friendships = await _friendsService.GetFriendships()
+                                        dataState.friendsList = await _friendsService.GetFriendsList()
                                     }
                                 }
                             }
@@ -88,7 +91,7 @@ struct AddFriendView: View {
             Spacer()
         }
         .task {
-            dataState.friendships = await GetFriendships()
+            dataState.friendships = await _friendsService.GetFriendships()
         }
     }
 }

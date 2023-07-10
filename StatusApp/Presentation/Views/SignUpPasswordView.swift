@@ -16,6 +16,8 @@ struct SignUpPasswordView: View {
 
     @State var signUpPassword: String = ""
     @State var signUpPasswordConfirm: String = ""
+
+    let _friendsService = FriendsService();
     var body: some View {
         VStack {
             VStack {
@@ -51,7 +53,7 @@ struct SignUpPasswordView: View {
                         dataState.currentUserName = signUpUsername
                         UserDefaults.standard.set(dataState.currentUserName, forKey: "userName")
                         dataState.currentUser = await GetUser()
-                        dataState.friendsList = await GetFriendsList()
+                        dataState.friendsList = await _friendsService.GetFriendsList()
                         // TODO: Add loading state
                         showOnboardingView = false
                     }

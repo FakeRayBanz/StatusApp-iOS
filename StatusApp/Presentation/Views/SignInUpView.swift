@@ -12,7 +12,9 @@ struct SignInUpView: View {
     @State var signInUsername: String = ""
     @State var signInPassword: String = ""
     @Binding var showOnboardingView: Bool
-    var _authService = AuthService();
+
+    let _authService = AuthService();
+    let _friendsService = FriendsService();
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
@@ -53,8 +55,8 @@ struct SignInUpView: View {
                                 dataState.currentUserName = signInUsername
                                 UserDefaults.standard.set(dataState.currentUserName, forKey: "userName")
                                 dataState.currentUser = await GetUser()
-                                dataState.friendsList = await GetFriendsList()
-                                dataState.friendships = await GetFriendships()
+                                dataState.friendsList = await _friendsService.GetFriendsList()
+                                dataState.friendships = await _friendsService.GetFriendships()
                                 // TODO: Add loading state
                                 showOnboardingView = false
                             }

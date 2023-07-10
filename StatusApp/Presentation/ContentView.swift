@@ -16,7 +16,8 @@ struct ContentView: View {
     @State var showAddFriendView: Bool = false
     @State var showOnboardingView: Bool = false
 
-    var _authService = AuthService();
+    let _authService = AuthService();
+    let _friendsService = FriendsService();
     var statusRed = Color(UIColor(red: 0.96, green: 0, blue: 0, alpha: 1))
     var body: some View {
         NavigationStack {
@@ -89,8 +90,8 @@ struct ContentView: View {
                 if await _authService.CheckAuth() == true {
                     print("CurrentUserName: " + dataState.currentUserName)
                     dataState.currentUser = await GetUser()
-                    dataState.friendsList = await GetFriendsList()
-                    dataState.friendships = await GetFriendships()
+                    dataState.friendsList = await _friendsService.GetFriendsList()
+                    dataState.friendships = await _friendsService.GetFriendships()
                     signalR.connection.start()
                 } else {
                     showOnboardingView = true
